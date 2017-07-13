@@ -11,12 +11,9 @@ public class Architect {
     String mBiography;
     Place mPlace;
     List<String> mPhotos;
+    String source;
 
-    public Architect(String name, String biography, Place place, List<String> photos) {
-        mName = name;
-        mBiography = biography;
-        mPlace = place;
-        mPhotos = photos;
+    public Architect() {
     }
 
     public String getName() {
@@ -49,5 +46,13 @@ public class Architect {
 
     public void setPhotos(List<String> photos) {
         mPhotos = photos;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 }

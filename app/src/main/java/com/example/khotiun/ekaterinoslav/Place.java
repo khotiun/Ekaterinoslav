@@ -18,16 +18,9 @@ public class Place {
     Architect mArchitect;
     List<String> mOldPhotos;
     List<String> mNewPhotos;
+    String source;
 
-    public Place(int id, String title, String description, Calendar dateCreate, Location location, Architect architect, List<String> oldPhotos, List<String> newPhotos) {
-        mId = id;
-        mTitle = title;
-        mDescription = description;
-        this.dateCreate = dateCreate;
-        mLocation = location;
-        mArchitect = architect;
-        mOldPhotos = oldPhotos;
-        mNewPhotos = newPhotos;
+    public Place() {
     }
 
     public int getId() {
@@ -92,5 +85,13 @@ public class Place {
 
     public void setNewPhotos(List<String> newPhotos) {
         mNewPhotos = newPhotos;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 }
