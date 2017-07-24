@@ -19,6 +19,7 @@ public class Place {
     List<String> mOldPhotos;
     List<String> mNewPhotos;
     String source;
+    String address;
 
     public Place() {
     }
@@ -93,5 +94,13 @@ public class Place {
 
     public void setSource(String source) {
         this.source = source;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

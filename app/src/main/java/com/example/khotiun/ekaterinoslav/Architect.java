@@ -1,5 +1,6 @@
 package com.example.khotiun.ekaterinoslav;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -9,6 +10,7 @@ import java.util.List;
 public class Architect {
     String mName;
     String mBiography;
+    Calendar date;
     Place mPlace;
     List<String> mPhotos;
     String source;
@@ -30,6 +32,14 @@ public class Architect {
 
     public void setBiography(String biography) {
         mBiography = biography;
+    }
+
+    public Calendar getDate() {
+        return date;
+    }
+
+    public void setDate(Calendar date) {
+        this.date = date;
     }
 
     public Place getPlace() {
