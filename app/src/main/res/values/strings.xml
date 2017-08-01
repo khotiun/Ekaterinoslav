@@ -5,5 +5,9 @@
     <string name="registration">Регистрация</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
+    <string name="sign_in_google">Войти через Google</string>
+    <string name="sign_in_facebook">Войти через Facebook</string>
+    <string name="sign_in_github">Войти через GitHub</string>
+    <string name="login">Вход</string>
 
 </resources>
