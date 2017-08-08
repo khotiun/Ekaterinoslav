@@ -15,7 +15,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:gravity="center"
-        android:text="@string/app_name"/>
+        android:text="@string/app_name"
+        android:textSize="@dimen/title"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:id="@+id/linear_layout_top"
@@ -79,30 +81,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/sign_in_google"/>
+            android:text="@string/sign_in_google"
+            android:textSize="@dimen/subhead"/>
 
         <TextView
             android:id="@+id/frafment_selection_sign_in_btn_sign_in_facebook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/sign_in_facebook"/>
+            android:text="@string/sign_in_facebook"
+            android:textSize="@dimen/subhead"/>
 
         <TextView
-            android:id="@+id/frafment_selection_sign_in_btn_sign_in_GitHub"
+            android:id="@+id/frafment_selection_sign_in_btn_sign_in_github"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/sign_in_github"/>
+            android:text="@string/sign_in_github"
+            android:textSize="@dimen/subhead"/>
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/frafment_selection_sign_in_tv_regestration_first"
+        android:id="@+id/frafment_selection_sign_in_tv_regestration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:text="Еще нет аккаунта?Зарегестрируйтесь."/>
+        android:text="@string/registration_account"
+        android:clickable="true"/>
 
 </RelativeLayout>

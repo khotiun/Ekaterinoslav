@@ -9,5 +9,10 @@
     <string name="sign_in_facebook">Войти через Facebook</string>
     <string name="sign_in_github">Войти через GitHub</string>
     <string name="login">Вход</string>
+    <string name="registration_account">Еще нет аккаунта? Зарегестрируйтесь.</string>
+    <string name="registration_successful">Регистрация успешна</string>
+    <string name="registration_failed">Регистрация провалена</string>
+    <string name="authorization_successful">Авторизация успешна</string>
+    <string name="authorization_failed">Авторизация провалена</string>
 
 </resources>

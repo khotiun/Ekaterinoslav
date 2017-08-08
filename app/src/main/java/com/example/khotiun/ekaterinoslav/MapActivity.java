@@ -1,5 +1,6 @@
 package com.example.khotiun.ekaterinoslav;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -27,6 +28,10 @@ import static android.R.attr.fragment;
 public class MapActivity extends AppCompatActivity {
 
     private Drawer drawer = null;
+
+    public static Intent newIntent(Context context) {
+        return new Intent(context, MapActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

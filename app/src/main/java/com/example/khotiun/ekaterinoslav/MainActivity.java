@@ -29,6 +29,6 @@ public class MainActivity extends SingleFragmentActivity{
 
     @Override
     protected Fragment createFragment() {
-        return RegistrationFragment.newInstance();
+        return SelectionSignInFragment.newInstance();
     }
 }
