@@ -76,8 +76,13 @@
         android:layout_below="@id/linear_layout_top"
         android:orientation="vertical">
 
-        <TextView
+        <com.google.android.gms.common.SignInButton
             android:id="@+id/frafment_selection_sign_in_btn_sign_in_google"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></com.google.android.gms.common.SignInButton>
+
+        <TextView
+            android:id="@+id/frafment_selection_sign_in_tv_sign_in_google"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -85,7 +90,7 @@
             android:textSize="@dimen/subhead"/>
 
         <TextView
-            android:id="@+id/frafment_selection_sign_in_btn_sign_in_facebook"
+            android:id="@+id/frafment_selection_sign_in_tv_sign_in_facebook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -93,7 +98,7 @@
             android:textSize="@dimen/subhead"/>
 
         <TextView
-            android:id="@+id/frafment_selection_sign_in_btn_sign_in_github"
+            android:id="@+id/frafment_selection_sign_in_tv_sign_in_github"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
