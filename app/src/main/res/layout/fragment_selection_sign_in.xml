@@ -74,36 +74,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/linear_layout_top"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/frafment_selection_sign_in_btn_sign_in_google"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></com.google.android.gms.common.SignInButton>
-
-        <TextView
-            android:id="@+id/frafment_selection_sign_in_tv_sign_in_google"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/sign_in_google"
-            android:textSize="@dimen/subhead"/>
+            android:layout_gravity="center_horizontal">
 
-        <TextView
-            android:id="@+id/frafment_selection_sign_in_tv_sign_in_facebook"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/sign_in_facebook"
-            android:textSize="@dimen/subhead"/>
+        </com.google.android.gms.common.SignInButton>
 
-        <TextView
-            android:id="@+id/frafment_selection_sign_in_tv_sign_in_github"
-            android:layout_width="match_parent"
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/frafment_selection_sign_in_btn_sign_in_facebook"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/sign_in_github"
-            android:textSize="@dimen/subhead"/>
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"/>
 
     </LinearLayout>
 

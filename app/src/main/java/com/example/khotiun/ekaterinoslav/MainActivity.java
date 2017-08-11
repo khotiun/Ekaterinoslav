@@ -26,9 +26,17 @@ import static android.os.Build.VERSION_CODES.M;
 
 public class MainActivity extends SingleFragmentActivity{
 
-
     @Override
     protected Fragment createFragment() {
         return SelectionSignInFragment.newInstance();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+       Log.d("WWWWWWWWWWWWWW", "qqqq");
+//        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+//        fragment.setUserVisibleHint(false);
+//        fragment.onActivityResult(requestCode, resultCode, data);
+
     }
 }
