@@ -1,42 +1,48 @@
 package com.example.khotiun.ekaterinoslav;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.support.v4.app.FragmentActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.facebook.FacebookSdk;
 
-import static android.os.Build.VERSION_CODES.M;
+import static android.R.attr.fragment;
 
 /**
  * Created by hotun on 30.07.2017.
  */
 
-public class MainActivity extends SingleFragmentActivity{
+public class MainActivity extends FragmentActivity {
+
+    private SelectionSignInFragment mSelectionSignInFragment;
 
     @Override
-    protected Fragment createFragment() {
-        return SelectionSignInFragment.newInstance();
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (savedInstanceState == null) {
+            // Add the fragment on initial activity setup
+            mSelectionSignInFragment = new SelectionSignInFragment();
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(android.R.id.content, mSelectionSignInFragment).commit();
+        } else {
+            // Or set the fragment from restored state info
+            mSelectionSignInFragment = (SelectionSignInFragment) getSupportFragmentManager()
+                    .findFragmentById(android.R.id.content);
+        }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-       Log.d("WWWWWWWWWWWWWW", "qqqq");
-//        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-//        fragment.setUserVisibleHint(false);
-//        fragment.onActivityResult(requestCode, resultCode, data);
-
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (mSelectionSignInFragment != null) {
+//            mSelectionSignInFragment.onActivityResult(requestCode, resultCode, data);
+//        } else {
+//            mSelectionSignInFragment = (SelectionSignInFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+//            mSelectionSignInFragment.onActivityResult(requestCode, resultCode, data);
+//        }
+//
+//    }
 }

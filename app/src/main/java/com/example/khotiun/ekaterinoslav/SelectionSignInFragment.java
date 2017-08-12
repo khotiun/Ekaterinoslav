@@ -1,16 +1,11 @@
 package com.example.khotiun.ekaterinoslav;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +16,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
+import com.facebook.ProfileTracker;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
@@ -43,10 +42,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-import static com.example.khotiun.ekaterinoslav.MapActivity.newIntent;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 
@@ -79,6 +74,7 @@ public class SelectionSignInFragment extends Fragment implements View.OnClickLis
         Log.d(TAG, "111");
         //facebook
         mCallbackManager = CallbackManager.Factory.create();
+
         //для того что бы слушать состояние пользователя
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -100,7 +96,7 @@ public class SelectionSignInFragment extends Fragment implements View.OnClickLis
         FirebaseUser user = mAuth.getCurrentUser();//получаем текущего пользователя
         if (user != null) {
             // User is signed in, пользователь вошел
-            Intent intent = newIntent(getActivity());
+            Intent intent = MapActivity.newIntent(getActivity());
             getActivity().startActivity(intent);
         }
 
@@ -123,6 +119,25 @@ public class SelectionSignInFragment extends Fragment implements View.OnClickLis
                 })
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
+
+        AccessTokenTracker tracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
+
+            }
+        };
+
+        ProfileTracker profileTracker = new ProfileTracker() {
+            @Override
+            protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
+
+            }
+        };
+
+        tracker.startTracking();
+        profileTracker.startTracking();
+
     }
     //добавление и удаление слушателя
     @Override
@@ -150,6 +165,8 @@ public class SelectionSignInFragment extends Fragment implements View.OnClickLis
         btnSignInGoogle = (SignInButton) view.findViewById(R.id.frafment_selection_sign_in_btn_sign_in_google);
         btnSignInGoogle.setOnClickListener(this);
         btnSignInFacebook = (LoginButton) view.findViewById(R.id.frafment_selection_sign_in_btn_sign_in_facebook);
+        btnSignInFacebook.setReadPermissions("email");
+        btnSignInFacebook.setFragment(this);
         tvRegestration = (TextView) view.findViewById(R.id.frafment_selection_sign_in_tv_regestration);
         tvRegestration.setOnClickListener(this);
         signInFacebook();
@@ -176,6 +193,7 @@ public class SelectionSignInFragment extends Fragment implements View.OnClickLis
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != Activity.RESULT_OK) {
             Log.d(TAG, "resultCode != Activity.RESULT_OK");
             return;
@@ -234,12 +252,13 @@ public class SelectionSignInFragment extends Fragment implements View.OnClickLis
 
     private void signInFacebook() {
 
-        btnSignInFacebook.setReadPermissions("email", "public_profile");//разрешение на использование email
         btnSignInFacebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             //вход выполнин успешно
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG, "facebook:onSuccess:" + loginResult);
+                AccessToken accessToken = loginResult.getAccessToken();
+                Profile profile = Profile.getCurrentProfile();
+                Log.d(TAG, "facebook:onSuccess:" + loginResult + profile.getFirstName());
 //                handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
