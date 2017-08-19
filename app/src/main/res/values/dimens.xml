@@ -6,4 +6,5 @@
 
     <dimen name="title">32sp</dimen>
     <dimen name="subhead">24sp</dimen>
+    <dimen name="map_inset_margin">100dp</dimen>
 </resources>

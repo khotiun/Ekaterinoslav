@@ -3,8 +3,11 @@ package com.example.khotiun.ekaterinoslav;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -37,6 +40,13 @@ public class MapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.activity_map_container);//если фрагмент находится в списке, нпример когда происходит поворот устройства
+
+        if (fragment == null){//если фрагмент отсутствует
+            fragment = MapFragment.newInstance();//создание фрагмента
+            fm.beginTransaction().add(R.id.activity_map_container, fragment).commit();//начало транзакции и добавление фрагмента в список FragmentManager
+        }
 
         AccountHeader accountHeader = new AccountHeaderBuilder()//шапка панели навигации
                 .withActivity(this)
