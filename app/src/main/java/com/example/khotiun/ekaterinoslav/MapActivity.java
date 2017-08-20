@@ -3,34 +3,26 @@ package com.example.khotiun.ekaterinoslav;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 
-import com.mikepenz.iconics.utils.Utils;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
-import static android.R.attr.fragment;
-
 public class MapActivity extends AppCompatActivity {
-
-    private Drawer drawer = null;
+    private Toolbar mToolbar;
+    private Drawer mDrawer = null;
+    private String[] itemNamesUp;
+    private String[] itemNamesDown;
 
     public static Intent newIntent(Context context) {
         return new Intent(context, MapActivity.class);
@@ -40,6 +32,8 @@ public class MapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.activity_map_container);//если фрагмент находится в списке, нпример когда происходит поворот устройства
 
@@ -48,25 +42,36 @@ public class MapActivity extends AppCompatActivity {
             fm.beginTransaction().add(R.id.activity_map_container, fragment).commit();//начало транзакции и добавление фрагмента в список FragmentManager
         }
 
+        itemNamesUp = getResources().getStringArray(R.array.item_names_up);
+        itemNamesDown = getResources().getStringArray(R.array.item_names_down);
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.list_place);
+        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.list_arhitect);
+        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.video_ekaterinoslav);
+        PrimaryDrawerItem item4 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.about);
+        PrimaryDrawerItem item5 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.exit);
+
         AccountHeader accountHeader = new AccountHeaderBuilder()//шапка панели навигации
                 .withActivity(this)
 //                .withHeaderBackground(R.drawable.header)
                 .build();
 
-        drawer = new DrawerBuilder(this)
+        mDrawer = new DrawerBuilder()
                 .withActivity(MapActivity.this)
                 .withAccountHeader(accountHeader)
                 .withDisplayBelowStatusBar(true)//панель навигации под статус баром
-//                .withToolbar(toolbar)
+                .withToolbar(mToolbar)
                 .withActionBarDrawerToggleAnimated(true)//анимация кнопки на тул баре
                 .withSavedInstance(savedInstanceState)//сохранение состояния
-//                .addDrawerItems(primaryDrawerItems)//пункты меню
-                .addStickyDrawerItems(
-                        new SecondaryDrawerItem()//секцция для второстепенного меню
+                .addDrawerItems(item1, item2, item3, new DividerDrawerItem(), item4, item5)//пункты меню
+//                .addStickyDrawerItems(
+//                        new SecondaryDrawerItem()//секцция для второстепенного меню
 //                                .withName(getString(R.string.about))
-//                                .withIdentifier(channelId.length - 1)//id
-                                .withSelectable(false)//свойство выделение при нажатии сбрасываем
-                )
+//                                .withIdentifier(itemNamesUp.length - 2)//id
+//                                .withSelectable(false)//свойство выделение при нажатии сбрасываем
+//                                .withName(getString(R.string.exit))
+//                                .withIdentifier(itemNamesUp.length - 1)//id
+//                                .withSelectable(false)//свойство выделение при нажатии сбрасываем
+//                )
                 //слушатель для нажатия пунктов списка
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override

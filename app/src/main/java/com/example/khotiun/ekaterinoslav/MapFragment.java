@@ -137,7 +137,7 @@ public class MapFragment extends SupportMapFragment {
 //                .position(itemPoint)
         MarkerOptions myMarker = new MarkerOptions()
                 .position(myPoint);
-
+        mMap.clear();//очищение карты от маркеров
         //При вызове addMarker(MarkerOptions) объект GoogleMap строит экземпляр Marker и добавляет его на карту
 //        mMap.addMarker(itemMarker);
         mMap.addMarker(myMarker);

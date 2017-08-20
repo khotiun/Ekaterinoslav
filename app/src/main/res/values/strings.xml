@@ -17,5 +17,23 @@
     <string name="authorization_failed">Авторизация провалена</string>
     <string name="action_settings">Settings</string>
     <string name="search">Find an places near you</string>
+    <string name="list_place">Список исторических мест</string>
+    <string name="list_arhitect">Список архитекторов</string>
+    <string name="video_ekaterinoslav">Видео Ekaterinoslav</string>
+    <string name="about">О приложении</string>
+    <string name="exit">Выйти</string>
+
+
+
+    <string-array name="item_names_up">
+        <item>Список исторических мест</item>
+        <item>Список архитекторов</item>
+        <item>Видео Ekaterinoslav</item>
+    </string-array>
+
+    <string-array name="item_names_down">
+        <item>О приложении</item>
+        <item>Выйти</item>
+    </string-array>
 
 </resources>
