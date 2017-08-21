@@ -39,6 +39,10 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:4.25.0'
     compile 'com.google.android.gms:play-services-location:10.0.1'
     compile 'com.google.android.gms:play-services-maps:10.0.1'
+
+    compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile 'com.github.mrengineer13:snackbar:1.2.0'
+    compile 'com.marshalchen.ultimaterecyclerview:library:0.3.18'
 }
 
 

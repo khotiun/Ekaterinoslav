@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Ekaterinoslav</string>
     <string name="facebook_app_id">1279250125531145</string>
+    <string name="youtube_apikey"></string>
+    <string name="googleplay_url"></string>
+    <string name="channel_id"></string>
 
     <string name="sign_in">Авторизация</string>
     <string name="registration">Регистрация</string>
@@ -8,32 +11,69 @@
     <string name="email">Email</string>
     <string name="sign_in_google">Войти через Google</string>
     <string name="sign_in_facebook">Войти через Facebook</string>
-    <string name="sign_in_github">Войти через GitHub</string>
     <string name="login">Вход</string>
     <string name="registration_account">Еще нет аккаунта? Зарегестрируйтесь.</string>
     <string name="registration_successful">Регистрация успешна</string>
     <string name="registration_failed">Регистрация провалена</string>
     <string name="authorization_successful">Авторизация успешна</string>
     <string name="authorization_failed">Авторизация провалена</string>
+
     <string name="action_settings">Settings</string>
     <string name="search">Find an places near you</string>
+
     <string name="list_place">Список исторических мест</string>
     <string name="list_arhitect">Список архитекторов</string>
     <string name="video_ekaterinoslav">Видео Ekaterinoslav</string>
     <string name="about">О приложении</string>
     <string name="exit">Выйти</string>
 
+    <string name="no_result">Видео отсутствует</string>
+    <string name="no_internet_connection">Проверьте интернет-соединение</string>
+    <string name="response_error">Connection Time Out or Server Under Maintenance</string>
+    <string name="error_player">Ошибка инициализации YouTube плеера (%1$s)</string>
 
+    <string name="retry">Повторить</string>
 
-    <string-array name="item_names_up">
-        <item>Список исторических мест</item>
-        <item>Список архитекторов</item>
-        <item>Видео Ekaterinoslav</item>
-    </string-array>
+    <string name="date_util_term_less">более</string>
 
-    <string-array name="item_names_down">
-        <item>О приложении</item>
-        <item>Выйти</item>
-    </string-array>
+    <string name="date_util_unit_minute">минуты</string>
+    <string name="date_util_unit_minuta">минутa</string>
+    <string name="date_util_unit_minutes">минут</string>
+    <string name="date_util_unit_hour">часа</string>
+    <string name="date_util_unit_hours">часов</string>
+    <string name="date_util_unit_day">дня</string>
+    <string name="date_util_unit_daya">день</string>
+    <string name="date_util_unit_days">дней</string>
+    <string name="date_util_unit_month">месяца</string>
+    <string name="date_util_unit_months">месяцев</string>
+    <string name="date_util_unit_year">года</string>
+    <string name="date_util_unit_years">лет</string>
+
+    <string name="date_util_prefix_about">около</string>
+    <string name="date_util_prefix_over">более</string>
+    <string name="date_util_prefix_almost">около</string>
+
+    <string name="date_util_suffix">назад</string>
+
+    <string name="pref_share_key">prefShareKey</string>
+    <string name="pref_rate_review_key">prefRateReviewKey</string>
+
+    <string name="pref_app_title">О приложении</string>
+    <string name="pref_app_summary">Видеоуроки по разработке мобильных приложений</string>
+    <string name="pref_version_title">Версия сборки</string>
+    <string name="pref_version_summary">1.0</string>
+    <string name="pref_developer_title">Разработчик</string>
+    <string name="pref_developer_summary">FandroidApps</string>
+    <string name="pref_share_title">Поделитесь приложением</string>
+    <string name="pref_share_summary">Расскажите друзьям об этом приложении</string>
+    <string name="pref_rate_review_title">Поставьте оценку</string>
+    <string name="pref_rate_review_summary">Оцените приложение и оставьте отзыв в GooglePlay</string>
+
+    <string name="share_to">Поделиться</string>
+    <string name="subject">Рекомендую видеоуроки о создании мобильных приложений на канале Start Android!</string>
+    <string name="message">Вы можете скачать приложение "Видеоуроки Start Android" для Android в </string>
+
+    <string name="new_videos">Новые видеоуроки</string>
+
 
 </resources>

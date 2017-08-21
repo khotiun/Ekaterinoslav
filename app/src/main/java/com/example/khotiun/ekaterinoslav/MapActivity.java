@@ -42,8 +42,6 @@ public class MapActivity extends AppCompatActivity {
             fm.beginTransaction().add(R.id.activity_map_container, fragment).commit();//начало транзакции и добавление фрагмента в список FragmentManager
         }
 
-        itemNamesUp = getResources().getStringArray(R.array.item_names_up);
-        itemNamesDown = getResources().getStringArray(R.array.item_names_down);
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.list_place);
         PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.list_arhitect);
         PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.video_ekaterinoslav);
