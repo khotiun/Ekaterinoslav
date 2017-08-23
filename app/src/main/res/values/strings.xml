@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Ekaterinoslav</string>
     <string name="facebook_app_id">1279250125531145</string>
-    <string name="youtube_apikey"></string>
-    <string name="googleplay_url"></string>
-    <string name="channel_id"></string>
+    <string name="youtube_apikey">AIzaSyDTsPn0VLqPRxFsnkkFCW5UpEnk3oDjC88</string>
+    <string name="googleplay_url">play.google.com/store/apps/details?id=com.example.khotiun.ekaterinoslav</string>
+    <string name="channel_id">PLCEbNs9a8dzlCs9jo9HVJFVAGro-bPkCK</string>
 
     <string name="sign_in">Авторизация</string>
     <string name="registration">Регистрация</string>

@@ -26,11 +26,11 @@ public abstract class SingleFragmentActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResId());
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragment_container);//если фрагмент находится в списке, нпример когда происходит поворот устройства
+        Fragment fragment = fm.findFragmentById(R.id.general_fragment_container);//если фрагмент находится в списке, нпример когда происходит поворот устройства
 
         if (fragment == null){//если фрагмент отсутствует
             fragment = createFragment();//создание фрагмента
-            fm.beginTransaction().add(R.id.fragment_container, fragment).commit();//начало транзакции и добавление фрагмента в список FragmentManager
+            fm.beginTransaction().add(R.id.general_fragment_container, fragment).commit();//начало транзакции и добавление фрагмента в список FragmentManager
         }
 
     }

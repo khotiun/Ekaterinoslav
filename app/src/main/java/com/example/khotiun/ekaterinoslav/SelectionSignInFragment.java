@@ -185,7 +185,7 @@ public class SelectionSignInFragment extends Fragment implements View.OnClickLis
         } else if (v.getId() == R.id.frafment_selection_sign_in_tv_regestration) {
             Fragment fragment = RegistrationFragment.newInstance();
             getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, fragment)//добавляем фрагмент в контайнер
+                    .replace(R.id.general_fragment_container, fragment)//добавляем фрагмент в контайнер
                     .addToBackStack(null)//добавляем в стек вызовов
                     .commit();
         }

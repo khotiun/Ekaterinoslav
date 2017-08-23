@@ -20,6 +20,7 @@
             android:layout_height="match_parent">
 
             <fragment
+                class="com.example.khotiun.ekaterinoslav.fragments.FragmentVideo"
                 android:id="@+id/video_fragment_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
