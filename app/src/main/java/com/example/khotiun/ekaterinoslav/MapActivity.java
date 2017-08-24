@@ -27,7 +27,7 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
-public class MapActivity extends AppCompatActivity{
+public class MapActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     //отступ между списками в альбомной ориентации
     private Drawer mDrawer = null;
@@ -49,7 +49,7 @@ public class MapActivity extends AppCompatActivity{
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragmentMap = fm.findFragmentById(R.id.activity_map_container);//если фрагмент находится в списке, нпример когда происходит поворот устройства
 
-        if (fragmentMap == null){//если фрагмент отсутствует
+        if (fragmentMap == null) {//если фрагмент отсутствует
             fragmentMap = MapFragment.newInstance();//создание фрагмента
             fm.beginTransaction().add(R.id.activity_map_container, fragmentMap).commit();//начало транзакции и добавление фрагмента в список FragmentManager
         }
@@ -90,9 +90,12 @@ public class MapActivity extends AppCompatActivity{
 
                         selectedDrawerItem = position;
                         if (drawerItem != null) {
-                            if (position == 3) {
-                                Intent intent = new Intent(MapActivity.this, ActivityHome.class);
-                               startActivity(intent);
+                            if (position == 1) {
+                                Intent intent = PlaceListActivity.newIntent(MapActivity.this);
+                                startActivity(intent);
+                            } else if (position == 3) {
+                                Intent intent = ActivityHome.newIntent(MapActivity.this);
+                                startActivity(intent);
                                 //вызов активити about
                             } else if (selectedDrawerItem == -1) {
 //                                Intent aboutIntent = new Intent(getApplicationContext(),

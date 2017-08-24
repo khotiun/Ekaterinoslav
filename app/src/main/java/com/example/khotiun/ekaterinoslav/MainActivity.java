@@ -1,6 +1,7 @@
 package com.example.khotiun.ekaterinoslav;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -14,6 +15,10 @@ import static android.R.attr.fragment;
 public class MainActivity extends FragmentActivity {
 
     private SelectionSignInFragment mSelectionSignInFragment;
+
+    public static Intent newIntent(Context context) {
+        return new Intent(context, MainActivity.class);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -80,14 +80,14 @@ public class Utils {
         editor.apply();//вызывается чтобы изминения вступили в силу
     }
     //метод для загрузки значения из SharedPreferences, извлекается значение счетчиков показов
-    public static int loadIntPreferences(Context ctx, String key, String param) {
-        SharedPreferences sharedPreferences = ctx.getSharedPreferences(key, Context.MODE_PRIVATE);
-        if (key.equals(ARG_ADMOB_PREFERENCE)) {
-            return sharedPreferences.getInt(param, 1);
-        } else {
-            return sharedPreferences.getInt(param, 1000);
-        }
-    }
+//    public static int loadIntPreferences(Context ctx, String key, String param) {
+//        SharedPreferences sharedPreferences = ctx.getSharedPreferences(key, Context.MODE_PRIVATE);
+//        if (key.equals(ARG_ADMOB_PREFERENCE)) {
+//            return sharedPreferences.getInt(param, 1);
+//        } else {
+//            return sharedPreferences.getInt(param, 1000);
+//        }
+//    }
 
     //метод отображения SnackBar, будет оповещать о проблемах с интернетом
     public static void showSnackBar(Activity activity, String message){

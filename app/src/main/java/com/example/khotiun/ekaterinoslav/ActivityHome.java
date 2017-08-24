@@ -1,5 +1,6 @@
 package com.example.khotiun.ekaterinoslav;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -43,6 +44,10 @@ public final class ActivityHome extends AppCompatActivity implements YouTubePlay
     private FrameLayout layoutList;
 
     private Fragment fragment;
+
+    public static Intent newIntent(Context context) {
+        return new Intent(context, ActivityHome.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

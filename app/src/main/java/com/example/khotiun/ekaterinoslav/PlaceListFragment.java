@@ -11,4 +11,6 @@ public class PlaceListFragment extends Fragment {
     public static Fragment newInstance(){
         return new PlaceListFragment();
     }
+
+
 }
