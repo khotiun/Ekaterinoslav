@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -87,8 +88,6 @@ public class MapActivity extends AppCompatActivity {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-
-                        selectedDrawerItem = position;
                         if (drawerItem != null) {
                             if (position == 1) {
                                 Intent intent = PlaceListActivity.newIntent(MapActivity.this);
@@ -97,11 +96,10 @@ public class MapActivity extends AppCompatActivity {
                                 Intent intent = ActivityHome.newIntent(MapActivity.this);
                                 startActivity(intent);
                                 //вызов активити about
-                            } else if (selectedDrawerItem == -1) {
-//                                Intent aboutIntent = new Intent(getApplicationContext(),
-//                                        ActivityAbout.class);
-//                                startActivity(aboutIntent);
-//                                overridePendingTransition(R.anim.open_next, R.anim.close_main);
+                            } else if (position == 5) {
+                                Intent aboutIntent = ActivityAbout.newIntent(MapActivity.this);
+                                startActivity(aboutIntent);
+                                overridePendingTransition(R.anim.open_next, R.anim.close_main);
                             }
                         }
                         return false;

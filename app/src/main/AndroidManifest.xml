@@ -39,6 +39,9 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait">>
         </activity>
+        <activity
+            android:name=".ActivityAbout">
+        </activity>
         <meta-data android:name="com.facebook.sdk.ApplicationId"
                    android:value="@string/facebook_app_id"/>
     </application>

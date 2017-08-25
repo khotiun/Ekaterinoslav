@@ -59,19 +59,19 @@
     <string name="pref_rate_review_key">prefRateReviewKey</string>
 
     <string name="pref_app_title">О приложении</string>
-    <string name="pref_app_summary">Видеоуроки по разработке мобильных приложений</string>
+    <string name="pref_app_summary">Исторические здания со времен строения города Екатеринослав</string>
     <string name="pref_version_title">Версия сборки</string>
     <string name="pref_version_summary">1.0</string>
     <string name="pref_developer_title">Разработчик</string>
-    <string name="pref_developer_summary">FandroidApps</string>
+    <string name="pref_developer_summary">Vadym Khotiun</string>
     <string name="pref_share_title">Поделитесь приложением</string>
     <string name="pref_share_summary">Расскажите друзьям об этом приложении</string>
     <string name="pref_rate_review_title">Поставьте оценку</string>
     <string name="pref_rate_review_summary">Оцените приложение и оставьте отзыв в GooglePlay</string>
 
     <string name="share_to">Поделиться</string>
-    <string name="subject">Рекомендую видеоуроки о создании мобильных приложений на канале Start Android!</string>
-    <string name="message">Вы можете скачать приложение "Видеоуроки Start Android" для Android в </string>
+    <string name="subject">Рекомендую данное приложение всем жителям города Днепр, а также гостям. В приложении вы можете максимально быстро ознакомиться со зданиями которые представляю историческую ценность со времен Екатеринослава!</string>
+    <string name="message">Вы можете скачать приложение "Ekaterinoslav" для Android в </string>
 
 
 </resources>
