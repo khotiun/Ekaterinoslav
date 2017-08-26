@@ -153,4 +153,6 @@ public class MapFragment extends SupportMapFragment {
         CameraUpdate update = CameraUpdateFactory.newLatLngBounds(bounds, margin);
         mMap.animateCamera(update);//бновление карты с помощью анимации
     }
+
+
 }

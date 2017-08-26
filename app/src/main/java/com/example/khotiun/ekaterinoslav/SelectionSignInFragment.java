@@ -76,6 +76,7 @@ public class SelectionSignInFragment extends Fragment implements View.OnClickLis
         mCallbackManager = CallbackManager.Factory.create();
 
         //для того что бы слушать состояние пользователя
+        mAuth = FirebaseAuth.getInstance();//инициализация обьекта
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {//срабатывает когда пользователь вошел или вышел
@@ -92,7 +93,6 @@ public class SelectionSignInFragment extends Fragment implements View.OnClickLis
             }
         };
 
-        mAuth = FirebaseAuth.getInstance();//инициализация обьекта
         FirebaseUser user = mAuth.getCurrentUser();//получаем текущего пользователя
         if (user != null) {
             // User is signed in, пользователь вошел

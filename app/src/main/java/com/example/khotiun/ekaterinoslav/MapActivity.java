@@ -2,36 +2,31 @@ package com.example.khotiun.ekaterinoslav;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.util.Log;
+import android.view.View;
 
-import com.example.khotiun.ekaterinoslav.fragments.FragmentChannelVideo;
-import com.example.khotiun.ekaterinoslav.fragments.FragmentVideo;
-import com.example.khotiun.ekaterinoslav.utils.Utils;
-import com.google.android.youtube.player.YouTubePlayer;
+import com.google.firebase.auth.FirebaseAuth;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 public class MapActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     //отступ между списками в альбомной ориентации
     private Drawer mDrawer = null;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     //представляет внешний вид окна активити со всем его оформлением и содержимым
 
@@ -45,6 +40,19 @@ public class MapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        mAuth = FirebaseAuth.getInstance();//инициализация обьекта
+        //для того что бы слушать состояние пользователя
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {//срабатывает когда пользователь вошел или вышел
+                if (firebaseAuth.getCurrentUser() == null) {
+                    Log.d("wwwwwww", "11111");
+                    Intent intent = MainActivity.newIntent(MapActivity.this);
+                    startActivity(intent);
+                }
+            }
+        };
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         FragmentManager fm = getSupportFragmentManager();
@@ -100,6 +108,8 @@ public class MapActivity extends AppCompatActivity {
                                 Intent aboutIntent = ActivityAbout.newIntent(MapActivity.this);
                                 startActivity(aboutIntent);
                                 overridePendingTransition(R.anim.open_next, R.anim.close_main);
+                            } else if (position == 6) {
+                                mAuth.signOut();
                             }
                         }
                         return false;
@@ -109,5 +119,20 @@ public class MapActivity extends AppCompatActivity {
                 .withShowDrawerOnFirstLaunch(true)//показ навигации при первом запуске приложения
                 .build();
 
+    }
+
+    //добавление и удаление слушателя
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 }

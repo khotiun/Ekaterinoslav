@@ -1,12 +1,9 @@
 package com.example.khotiun.ekaterinoslav;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-
-import static android.R.attr.fragment;
 
 /**
  * Created by hotun on 30.07.2017.
