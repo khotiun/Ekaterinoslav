@@ -2,7 +2,7 @@ package com.example.khotiun.ekaterinoslav;
 
 import android.content.Context;
 import android.content.Intent;
-import android.nfc.Tag;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -20,6 +20,10 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 public class MapActivity extends AppCompatActivity {
     private Toolbar mToolbar;
@@ -98,6 +102,7 @@ public class MapActivity extends AppCompatActivity {
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         if (drawerItem != null) {
                             if (position == 1) {
+                                addPlace1();
                                 Intent intent = PlaceListActivity.newIntent(MapActivity.this);
                                 startActivity(intent);
                             } else if (position == 3) {
@@ -135,4 +140,73 @@ public class MapActivity extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
+    private void addPlace1() {
+        List<String> architectSources = new ArrayList<>();
+        architectSources.add("https://ru.wikipedia.org/wiki/%D0%97%D0%B0%D1%85%D0%B0%D1%80%D0%BE%D0%B2,_%D0%90%D0%BD%D0%B4%D1%80%D0%B5%D1%8F%D0%BD_%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B5%D0%B2%D0%B8%D1%87");
+        List <Integer> architectPlaces = new ArrayList<>();
+        architectPlaces.add(1);
+        Architect architect = new Architect(
+                "Андриан Дмитриевич Захаров",
+                "Родился 8 августа 1761 года в семье мелкого служащего Адмиралтейств-коллегии. В раннем возрасте был отдан отцом в художественное училище при петербургской Академии Художеств, где проучился до 1782 года. Его учителями были А. Ф. Кокоринов, И. Е. Старов и Ю. М. Фельтен. В 1778 году Андреян Захаров получил серебряную медаль за проект загородного дома, в 1780 году — Большую серебряную медаль за «архитектурную композицию, представляющую дом принцев». При окончании училища получил большую золотую медаль и право на пенсионерскую поездку за границу для продолжения образования. Продолжал учиться в Париже с 1782 года по 1786 год у Ж. Ф. Шальгрена.\n" +
+                        "\n" +
+                        "В 1786 году вернулся в Петербург и начал работать преподавателем в Академии художеств, одновременно начав заниматься проектированием. Через некоторое время Захарова назначили архитектором всех недостроенных строений Академии Художеств.\n" +
+                        "\n" +
+                        "После этого он работал в Санкт-Петербурге, достиг звания главного архитектора Морского ведомства.\n" +
+                        "\n" +
+                        "С 1787 года Захаров преподавал в Академии Художеств, среди его учеников был архитектор А. И. Мельников.\n" +
+                        "\n" +
+                        "С 1794 года Захаров стал академиком петербургской Академии Художеств.\n" +
+                        "\n" +
+                        "В конце 1799 года указом Павла I Захаров был назначен главным архитектором Гатчины, где проработал почти два года. " +
+                        "По его проекту построен в 1835 г. кафедральный Спасо-Преображенский собор в Екатеринославе (Днепропетровске). ",
+                new GregorianCalendar(1761, 8, 8),
+                "https://upload.wikimedia.org/wikipedia/commons/4/4e/Shukin-Zaharov.jpg?uselang=ru",
+                architectPlaces,
+                architectSources
+
+        );
+
+        List <String> oldPhotos = new ArrayList<>();
+        oldPhotos.add("https://www.shukach.com/sites/default/files/imagecache/node-gallery-display-clean/post_images/3_3.jpg");
+        oldPhotos.add("https://www.shukach.com/sites/default/files/imagecache/node-gallery-display-clean/post_images/sobor.jpg");
+
+        List <String> newPhotos = new ArrayList<>();
+        newPhotos.add("https://oktv.ua/img/article/dnepr_preobrag1.jpg");
+        newPhotos.add("http://lopata.in.ua/wp-content/uploads/2015/02/171.jpg");
+        newPhotos.add("http://mistaua.com/filesup/dost_foto/853_1_2.jpg");
+        newPhotos.add("http://eparhia.dp.ua/contents/images/1797752a0840d9a481.jpg");
+
+        List <String> placeSourses = new ArrayList<>();
+        placeSourses.add("http://gorod.dp.ua/out/attractions/oneplace/?place_id=1199");
+        placeSourses.add("https://www.shukach.com/sites/default/files/imagecache/node-gallery-display-clean/post_images/3_3.jpg");
+        placeSourses.add("https://www.shukach.com/sites/default/files/imagecache/node-gallery-display-clean/post_images/sobor.jpg");
+        placeSourses.add("https://oktv.ua/img/article/dnepr_preobrag1.jpg");
+        placeSourses.add("http://lopata.in.ua/wp-content/uploads/2015/02/171.jpg");
+        placeSourses.add("http://mistaua.com/filesup/dost_foto/853_1_2.jpg");
+        placeSourses.add("http://eparhia.dp.ua/contents/images/1797752a0840d9a481.jpg");
+
+        Place place = new Place(
+                1,
+                "Спасо-Преображенский кафедральный собор",
+                "Наиболее замечательным сооружением Екатеринослава эпохи классицизма является Преображенский собор, увенчавший место закладки города.\n" +
+                        "Проект собора, разработанный и утвержденный в 1786 г., не был осуществлен. Не исключено, что И. Старов, занимаясь строительством Потемкинского дворца и генеральным планом Екатеринослава, предполагал построить городской кафедральный собор по собственному проекту. Ведь в те времена близилось окончание строительства одного из наиболее выдающихся и престижных сооружений мастера — Троицкого собора Александро-Невской лавры в Петербурге и логично было продолжить подобную работу в Екатеринославе. На эту мысль наводит находка в архиве Научно-исследовательского института теории, истории и перспективных проблем советской архитектуры в г. Киеве неизвестного офорта 1790-х годов, изображающего (согласно позднейшей атрибутации) интерьер собора в Екатеринославе. На рисунке видим центральный неф грандиозного многокупольного сооружения с базиликальным раскрытием внутреннего пространства. От боковых нефов он отделен торжественным рядом спаренных колонн римско-коринфского ордера. На пилонах входной части храма расположены монументальные горельефы.\n" +
+                        "Особенности построения интерьера сооружения и графического дополнения листа во многом напоминают изображения интерьеров Троицкого собора Александро-Невской лавры, выполненные в свое время художником Ф. Даниловым, коллегой Огарева по строительству петербургского собора. Однако первоначальные проекты екатеринославского собора не были осуществлены.\n" +
+                        "\n" +
+                        "С 1930-го по 1988 г службы в Соборе не велись. С 1975 по 1988 гг. в помещении храма размещался музей религии и атеизма. \n" +
+                        "\n" +
+                        "Богослужения и требы в соборе совершаются ежедневно.\n" +
+                        "\n" +
+                        "Престольный праздник – в День Преображения Господня, 19 августа.",
+                new PlaceLocation(48.458442, 35.066612),
+                architect,
+                oldPhotos,
+                newPhotos,
+                placeSourses,
+                "площадь Соборная, 1"
+        );
+
+
+    }
+
 }

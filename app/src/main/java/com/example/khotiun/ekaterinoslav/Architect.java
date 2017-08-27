@@ -11,11 +11,20 @@ public class Architect {
     String mName;
     String mBiography;
     Calendar date;
-    Place mPlace;
-    List<String> mPhotos;
-    String source;
+    String mPhotos;
+    List <Integer> mPlaces;
+    List <String> mSources;
 
     public Architect() {
+    }
+
+    public Architect(String name, String biography, Calendar date, String photos, List<Integer> places, List<String> sources) {
+        mName = name;
+        mBiography = biography;
+        this.date = date;
+        mPhotos = photos;
+        mPlaces = places;
+        mSources = sources;
     }
 
     public String getName() {
@@ -42,27 +51,27 @@ public class Architect {
         this.date = date;
     }
 
-    public Place getPlace() {
-        return mPlace;
-    }
-
-    public void setPlace(Place place) {
-        mPlace = place;
-    }
-
-    public List<String> getPhotos() {
+    public String getPhotos() {
         return mPhotos;
     }
 
-    public void setPhotos(List<String> photos) {
+    public void setPhotos(String photos) {
         mPhotos = photos;
     }
 
-    public String getSource() {
-        return source;
+    public List<Integer> getPlaces() {
+        return mPlaces;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    public void setPlaces(List<Integer> places) {
+        mPlaces = places;
+    }
+
+    public List<String> getSources() {
+        return mSources;
+    }
+
+    public void setSources(List<String> sources) {
+        mSources = sources;
     }
 }

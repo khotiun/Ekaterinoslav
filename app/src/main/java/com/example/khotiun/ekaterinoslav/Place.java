@@ -13,15 +13,26 @@ public class Place {
     int mId;
     String mTitle;
     String mDescription;
-    Calendar dateCreate;
-    Location mLocation;
+    PlaceLocation mLocation;
     Architect mArchitect;
     List<String> mOldPhotos;
     List<String> mNewPhotos;
-    String source;
+    List<String> source;
     String address;
 
     public Place() {
+    }
+
+    public Place(int id, String title, String description, PlaceLocation location, Architect architect, List<String> oldPhotos, List<String> newPhotos, List<String> source, String address) {
+        mId = id;
+        mTitle = title;
+        mDescription = description;
+        mLocation = location;
+        mArchitect = architect;
+        mOldPhotos = oldPhotos;
+        mNewPhotos = newPhotos;
+        this.source = source;
+        this.address = address;
     }
 
     public int getId() {
@@ -48,19 +59,11 @@ public class Place {
         mDescription = description;
     }
 
-    public Calendar getDateCreate() {
-        return dateCreate;
-    }
-
-    public void setDateCreate(Calendar dateCreate) {
-        this.dateCreate = dateCreate;
-    }
-
-    public Location getLocation() {
+    public PlaceLocation getLocation() {
         return mLocation;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(PlaceLocation location) {
         mLocation = location;
     }
 
@@ -88,11 +91,11 @@ public class Place {
         mNewPhotos = newPhotos;
     }
 
-    public String getSource() {
+    public List<String> getSource() {
         return source;
     }
 
-    public void setSource(String source) {
+    public void setSource(List<String> source) {
         this.source = source;
     }
 
