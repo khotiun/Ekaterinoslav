@@ -1,4 +1,4 @@
-package com.example.khotiun.ekaterinoslav;
+package com.example.khotiun.ekaterinoslav.fragments;
 
 import android.support.v4.app.Fragment;
 

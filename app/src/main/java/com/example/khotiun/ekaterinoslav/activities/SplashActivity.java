@@ -1,4 +1,4 @@
-package com.example.khotiun.ekaterinoslav;
+package com.example.khotiun.ekaterinoslav.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class ActivitySplash extends AppCompatActivity {
+import com.example.khotiun.ekaterinoslav.R;
+
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class ActivitySplash extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Intent intent = MapActivity.newIntent(ActivitySplash.this);
+            Intent intent = MapActivity.newIntent(SplashActivity.this);
             startActivity(intent);
             overridePendingTransition(R.anim.open_next, R.anim.close_main);
         }

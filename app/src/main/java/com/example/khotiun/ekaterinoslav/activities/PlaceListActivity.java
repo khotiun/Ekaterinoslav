@@ -1,8 +1,10 @@
-package com.example.khotiun.ekaterinoslav;
+package com.example.khotiun.ekaterinoslav.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+
+import com.example.khotiun.ekaterinoslav.fragments.PlaceListFragment;
 
 /**
  * Created by hotun on 24.07.2017.

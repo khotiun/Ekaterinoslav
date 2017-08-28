@@ -1,8 +1,5 @@
-package com.example.khotiun.ekaterinoslav;
+package com.example.khotiun.ekaterinoslav.model;
 
-import android.location.Location;
-
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -10,20 +7,20 @@ import java.util.List;
  */
 
 public class Place {
-    int mId;
-    String mTitle;
-    String mDescription;
-    PlaceLocation mLocation;
-    Architect mArchitect;
-    List<String> mOldPhotos;
-    List<String> mNewPhotos;
-    List<String> source;
-    String address;
+    private int mId;
+    private String mTitle;
+    private String mDescription;
+    private PlaceLocation mLocation;
+    private Architect mArchitect;
+    private List<String> mOldPhotos;
+    private List<String> mNewPhotos;
+    private String mSource;
+    private String address;
 
     public Place() {
     }
 
-    public Place(int id, String title, String description, PlaceLocation location, Architect architect, List<String> oldPhotos, List<String> newPhotos, List<String> source, String address) {
+    public Place(int id, String title, String description, PlaceLocation location, Architect architect, List<String> oldPhotos, List<String> newPhotos, String source, String address) {
         mId = id;
         mTitle = title;
         mDescription = description;
@@ -31,7 +28,7 @@ public class Place {
         mArchitect = architect;
         mOldPhotos = oldPhotos;
         mNewPhotos = newPhotos;
-        this.source = source;
+        mSource = source;
         this.address = address;
     }
 
@@ -91,12 +88,12 @@ public class Place {
         mNewPhotos = newPhotos;
     }
 
-    public List<String> getSource() {
-        return source;
+    public String getSource() {
+        return mSource;
     }
 
-    public void setSource(List<String> source) {
-        this.source = source;
+    public void setSource(String source) {
+        mSource = source;
     }
 
     public String getAddress() {

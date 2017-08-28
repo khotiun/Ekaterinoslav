@@ -1,4 +1,4 @@
-package com.example.khotiun.ekaterinoslav;
+package com.example.khotiun.ekaterinoslav.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.khotiun.ekaterinoslav.FirebaseAccount;
+import com.example.khotiun.ekaterinoslav.R;
 
 /**
  * Created by hotun on 30.07.2017.

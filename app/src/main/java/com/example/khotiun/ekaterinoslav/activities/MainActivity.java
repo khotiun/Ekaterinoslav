@@ -1,9 +1,11 @@
-package com.example.khotiun.ekaterinoslav;
+package com.example.khotiun.ekaterinoslav.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+
+import com.example.khotiun.ekaterinoslav.fragments.SelectionSignInFragment;
 
 /**
  * Created by hotun on 30.07.2017.

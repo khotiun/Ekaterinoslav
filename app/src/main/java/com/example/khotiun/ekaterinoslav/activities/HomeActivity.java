@@ -1,4 +1,4 @@
-package com.example.khotiun.ekaterinoslav;
+package com.example.khotiun.ekaterinoslav.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.example.khotiun.ekaterinoslav.R;
 import com.example.khotiun.ekaterinoslav.fragments.FragmentChannelVideo;
 import com.example.khotiun.ekaterinoslav.fragments.FragmentVideo;
 import com.google.android.youtube.player.YouTubeApiServiceUtil;
@@ -24,7 +25,7 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 
-public final class ActivityHome extends AppCompatActivity implements YouTubePlayer.OnFullscreenListener,
+public final class HomeActivity extends AppCompatActivity implements YouTubePlayer.OnFullscreenListener,
         FragmentChannelVideo.OnVideoSelectedListener{
 
     //отступ между списками в альбомной ориентации
@@ -46,7 +47,7 @@ public final class ActivityHome extends AppCompatActivity implements YouTubePlay
     private Fragment fragment;
 
     public static Intent newIntent(Context context) {
-        return new Intent(context, ActivityHome.class);
+        return new Intent(context, HomeActivity.class);
     }
 
     @Override
@@ -106,7 +107,7 @@ public final class ActivityHome extends AppCompatActivity implements YouTubePlay
         switch (item.getItemId()) {
 //            case R.id.menuAbout:
 //                Intent aboutIntent = new Intent(getApplicationContext(),
-//                        ActivityAbout.class);
+//                        AboutActivity.class);
 //                startActivity(aboutIntent);
 //                overridePendingTransition(R.anim.open_next, R.anim.close_main);
 //                return true;

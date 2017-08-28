@@ -73,7 +73,7 @@ public class FragmentChannelVideo extends Fragment implements View.OnClickListen
     private boolean mIsFirstVideo = true;//переменная для проверки первого видео
 
     //будет вызываться когда пользователь выбирает видео из списка
-    public interface OnVideoSelectedListener {//реализован в ActivityHome
+    public interface OnVideoSelectedListener {//реализован в HomeActivity
 
         public void onVideoSelected(String ID);
     }
@@ -149,7 +149,7 @@ public class FragmentChannelVideo extends Fragment implements View.OnClickListen
                             public void onItemClick(RecyclerView parent, View clickedView, int position) {
 
                                 if (position < mVideoData.size()) {
-                                    //передаем данные выбранного видео в ActivityHome
+                                    //передаем данные выбранного видео в HomeActivity
                                     mCallback.onVideoSelected(mVideoData.get(position).get(Utils.KEY_VIDEO_ID));
                                 }
                             }

@@ -1,10 +1,11 @@
-package com.example.khotiun.ekaterinoslav;
+package com.example.khotiun.ekaterinoslav.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.example.khotiun.ekaterinoslav.R;
 import com.lb.material_preferences_library.PreferenceActivity;
 import com.lb.material_preferences_library.custom_preferences.Preference;
 
@@ -13,11 +14,11 @@ import com.lb.material_preferences_library.custom_preferences.Preference;
  * Created by hotun on 18.07.2017.
  */
 //экран для отображения информации о приложении
-public class ActivityAbout extends PreferenceActivity
+public class AboutActivity extends PreferenceActivity
         implements Preference.OnPreferenceClickListener {
 
     public static Intent newIntent(Context context) {
-        return new Intent(context, ActivityAbout.class);
+        return new Intent(context, AboutActivity.class);
     }
 
     @Override

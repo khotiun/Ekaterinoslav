@@ -1,4 +1,4 @@
-package com.example.khotiun.ekaterinoslav;
+package com.example.khotiun.ekaterinoslav.model;
 
 /**
  * Created by hotun on 27.08.2017.
@@ -6,8 +6,8 @@ package com.example.khotiun.ekaterinoslav;
 
 public class PlaceLocation {
 
-    double longitude;
-    double latitude;
+    private double longitude;
+    private double latitude;
 
     public PlaceLocation(double longitude, double latitude) {
         this.longitude = longitude;

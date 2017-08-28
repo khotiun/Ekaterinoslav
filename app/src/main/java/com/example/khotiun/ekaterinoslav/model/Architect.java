@@ -1,4 +1,4 @@
-package com.example.khotiun.ekaterinoslav;
+package com.example.khotiun.ekaterinoslav.model;
 
 import java.util.Calendar;
 import java.util.List;
@@ -8,23 +8,23 @@ import java.util.List;
  */
 
 public class Architect {
-    String mName;
-    String mBiography;
-    Calendar date;
-    String mPhotos;
-    List <Integer> mPlaces;
-    List <String> mSources;
+    private String mName;
+    private String mBiography;
+    private Calendar date;
+    private String mPhotos;
+    private List<Integer> mPlaces;
+    private String mSource;
 
     public Architect() {
     }
 
-    public Architect(String name, String biography, Calendar date, String photos, List<Integer> places, List<String> sources) {
+    public Architect(String name, String biography, Calendar date, String photos, List<Integer> places, String source) {
         mName = name;
         mBiography = biography;
         this.date = date;
         mPhotos = photos;
         mPlaces = places;
-        mSources = sources;
+        mSource = source;
     }
 
     public String getName() {
@@ -67,11 +67,11 @@ public class Architect {
         mPlaces = places;
     }
 
-    public List<String> getSources() {
-        return mSources;
+    public String getSources() {
+        return mSource;
     }
 
-    public void setSources(List<String> sources) {
-        mSources = sources;
+    public void setSources(String sources) {
+        mSource = sources;
     }
 }
