@@ -103,4 +103,19 @@ public class Place {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    @Override
+    public String toString() {
+        return "Place{" +
+                "mId=" + mId +
+                ", mTitle='" + mTitle + '\'' +
+                ", mDescription='" + mDescription + '\'' +
+                ", mLocation=" + mLocation +
+                ", mArchitect=" + mArchitect +
+                ", mOldPhotos=" + mOldPhotos +
+                ", mNewPhotos=" + mNewPhotos +
+                ", mSource='" + mSource + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

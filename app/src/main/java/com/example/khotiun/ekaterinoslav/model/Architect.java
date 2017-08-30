@@ -1,6 +1,7 @@
 package com.example.khotiun.ekaterinoslav.model;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
 public class Architect {
     private String mName;
     private String mBiography;
-    private Calendar date;
+    private String date;
     private String mPhotos;
     private List<Integer> mPlaces;
     private String mSource;
@@ -18,7 +19,7 @@ public class Architect {
     public Architect() {
     }
 
-    public Architect(String name, String biography, Calendar date, String photos, List<Integer> places, String source) {
+    public Architect(String name, String biography, String date, String photos, List<Integer> places, String source) {
         mName = name;
         mBiography = biography;
         this.date = date;
@@ -43,11 +44,11 @@ public class Architect {
         mBiography = biography;
     }
 
-    public Calendar getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Calendar date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

@@ -1,8 +1,8 @@
 package com.example.khotiun.ekaterinoslav;
 
+import android.app.Application;
 import android.app.IntentService;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -18,37 +18,42 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.os.Build.VERSION_CODES.M;
+
 /**
  * Created by hotun on 28.08.2017.
  */
 
-public class ServiceTask extends IntentService {
-    private static final String TAG = "ServiceTask";
-
-    public ServiceTask() {
-        super("MyServiceTask");
-    }
+public class MyApp extends Application {
+    private static final String TAG = "MyApp";
 
     @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
-
+    public void onCreate() {
+        super.onCreate();
         DatabaseReference mDatabaseReference = FirebaseDatabase.getInstance().getReference();//получаем экземляр FirebaseDatabase и из него ссылку на базу данных
         mDatabaseReference.child("Place").addValueEventListener(new ValueEventListener() {//устанавливаем слушателя на данные, которые хронятся по ссылке
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<ArrayList<Place>> t = new GenericTypeIndicator<ArrayList<Place>>() {};
+                GenericTypeIndicator<ArrayList<Place>> t = new GenericTypeIndicator<ArrayList<Place>>() {
+                };
                 List<Place> places = dataSnapshot.getValue(t);//DataSnapshot - содержит данные из нашей базы данных
-                Log.d(TAG, places.toString());
-                Log.d(TAG, 1111 + "");
-                PlaceLab placeLab = PlaceLab.getPlaceLab(ServiceTask.this);
+                for (Place place : places) {
+                    if (place == null) {
+                        Log.d(TAG, "place == null");
+                    } else {
+                        Log.d(TAG, place.getId() + "");
+                    }
+
+                }
+                PlaceLab placeLab = PlaceLab.getPlaceLab();
                 placeLab.addPlaceList(places);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
 
         });
+
     }
 }

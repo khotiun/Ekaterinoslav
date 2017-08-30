@@ -11,26 +11,24 @@ import java.util.List;
 //класс на основе синглтона
 public class PlaceLab {
     private static PlaceLab sPlaceLab;
-    private  List<Place> places;
-    private Context mContext;
+    private List<Place> places;
 
-    public static PlaceLab getPlaceLab(Context context) {
-        if (sPlaceLab == null){
-            sPlaceLab = new PlaceLab(context);
+    public static PlaceLab getPlaceLab() {
+        if (sPlaceLab == null) {
+            sPlaceLab = new PlaceLab();
         }
         return sPlaceLab;
     }
 
-    private PlaceLab(Context context) {
-        mContext = context.getApplicationContext();
+    private PlaceLab() {
         places = new ArrayList<>();
     }
 
-    public List<Place> getPlace() {
+    public List<Place> getPlaces() {
         return places;
     }
 
-    public void addPlaceList(List <Place> places){
-
+    public void addPlaceList(List<Place> places) {
+        this.places.addAll(places);
     }
 }

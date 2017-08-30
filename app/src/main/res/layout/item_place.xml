@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:background="@color/material_background_color"
-             android:minHeight="@dimen/item_twoline_height">
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list_item_place_cv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/material_background_color"
+
+    android:paddingTop="8dp"
+    android:minHeight="@dimen/item_twoline_height">
 
     <FrameLayout
         android:layout_width="@dimen/thumbnail_width"
@@ -12,48 +18,42 @@
         android:layout_marginLeft="@dimen/standard_margin">
 
         <ImageView
-            android:id="@+id/imgThumbnail"
-            android:layout_width="@dimen/thumbnail_width"
-            android:layout_height="@dimen/thumbnail_height"
+            android:id="@+id/list_item_place_iv"
+            android:layout_width="120dp"
+            android:layout_height="96dp"
+            android:layout_alignParentLeft="true"
             android:scaleType="centerCrop"/>
 
-        <TextView
-            android:id="@+id/txtDuration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:background="@color/accent_color"
-            android:ellipsize="end"
-            android:padding="@dimen/caption_padding"
-            android:singleLine="true"
-            android:textColor="@color/text_and_icon_color"
-            android:textSize="@dimen/subhead"/>
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/place_description"
         android:layout_gravity="center_vertical"
         android:orientation="vertical"
         android:paddingLeft="@dimen/item_padding_with_icon"
         android:paddingRight="@dimen/standard_margin">
 
         <TextView
-            android:id="@+id/txtTitle"
+            android:id="@+id/list_item_place_place_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
+            android:maxLines="2"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/title"/>
+            android:textSize="@dimen/title"
+            tools:text="Мерефо-Херсонский железнодорожный мост"/>
 
         <TextView
-            android:id="@+id/txtPublishedAt"
-            android:layout_width="wrap_content"
+            android:id="@+id/list_item_place_place_address"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:singleLine="true"
             android:textColor="@color/secondary_text"
-            android:textSize="@dimen/subhead"/>
+            android:textSize="@dimen/subhead"
+            tools:text="Кутузова 2/3"/>
+
     </LinearLayout>
 
     <View
@@ -61,4 +61,5 @@
         android:layout_height="@dimen/divider_height"
         android:layout_gravity="bottom"
         android:background="@color/divider_color"/>
-</FrameLayout>
+
+</android.support.v7.widget.CardView>
