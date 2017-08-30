@@ -1,7 +1,5 @@
 package com.example.khotiun.ekaterinoslav.model;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +24,15 @@ public class PlaceLab {
 
     public List<Place> getPlaces() {
         return places;
+    }
+
+    public Place getPlace(int placeId) {
+        for (Place place : places) {
+            if (place.getId() == placeId) {
+                return place;
+            }
+        }
+        return null;
     }
 
     public void addPlaceList(List<Place> places) {

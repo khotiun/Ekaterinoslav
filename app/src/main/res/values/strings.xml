@@ -72,6 +72,8 @@
     <string name="share_to">Поделиться</string>
     <string name="subject">Рекомендую данное приложение всем жителям города Днепр, а также гостям. В приложении вы можете максимально быстро ознакомиться со зданиями которые представляю историческую ценность со времен Екатеринослава!</string>
     <string name="message">Вы можете скачать приложение "Ekaterinoslav" для Android в </string>
+    <string name="architect_building">Архитектор здания</string>
+    <string name="building_in_our_time">Здание в наше время</string>
 
 
 </resources>

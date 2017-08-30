@@ -12,6 +12,7 @@
     <color name="drawer_divider_color">#455A64</color>
     <color name="window_background_color">#37474F</color>
     <color name="material_background_color">#455A64</color>
+    <color name="title_color">#b9263238</color>
 
     <color name="blue_800">#008bcc</color>
     <color name="grey_50">#b1b1b1</color>

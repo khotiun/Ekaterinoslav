@@ -1,5 +1,6 @@
 package com.example.khotiun.ekaterinoslav.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.khotiun.ekaterinoslav.R;
+import com.example.khotiun.ekaterinoslav.activities.PlacePagerActivity;
 import com.example.khotiun.ekaterinoslav.model.Place;
 import com.example.khotiun.ekaterinoslav.model.PlaceLab;
 import com.squareup.picasso.Picasso;
@@ -70,6 +72,8 @@ public class PlaceListFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
+            Intent intent = PlacePagerActivity.newIntent(getActivity(), mPlace.getId());
+            startActivity(intent);
         }
     }
 

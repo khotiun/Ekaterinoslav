@@ -10,7 +10,7 @@
 
     <fragment
         android:id="@+id/video_fragment_container"
-        class="com.example.khotiun.ekaterinoslav.fragments.FragmentVideo"
+        class="com.example.khotiun.ekaterinoslav.fragments.VideoFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"/>

@@ -15,8 +15,8 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.khotiun.ekaterinoslav.R;
-import com.example.khotiun.ekaterinoslav.fragments.FragmentChannelVideo;
-import com.example.khotiun.ekaterinoslav.fragments.FragmentVideo;
+import com.example.khotiun.ekaterinoslav.fragments.ChannelVideoFragment;
+import com.example.khotiun.ekaterinoslav.fragments.VideoFragment;
 import com.google.android.youtube.player.YouTubeApiServiceUtil;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -26,13 +26,13 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 
 public final class HomeActivity extends AppCompatActivity implements YouTubePlayer.OnFullscreenListener,
-        FragmentChannelVideo.OnVideoSelectedListener{
+        ChannelVideoFragment.OnVideoSelectedListener{
 
     //отступ между списками в альбомной ориентации
     private static final int LANDSCAPE_VIDEO_PADDING_DP = 5;
     //код запроса, для востановления ошибки после API
     private static final int RECOVERY_DIALOG_REQUEST = 1;
-    private FragmentVideo fragmentVideo;
+    private VideoFragment fragmentVideo;
     //переменная для обработки полноэкранного состояния
     private boolean isFullscreen;
 
@@ -60,7 +60,7 @@ public final class HomeActivity extends AppCompatActivity implements YouTubePlay
         setSupportActionBar(toolbar);
 
         decorView = getWindow().getDecorView();
-        fragmentVideo = (FragmentVideo) getFragmentManager().findFragmentById(R.id.video_fragment_container);
+        fragmentVideo = (VideoFragment) getFragmentManager().findFragmentById(R.id.video_fragment_container);
 
         channelNames = getResources().getString(R.string.video_ekaterinoslav);
         toolbar.setTitle(channelNames);
@@ -69,7 +69,7 @@ public final class HomeActivity extends AppCompatActivity implements YouTubePlay
 
 //        setToolbarAndSelectedDrawerItem(channelNames, 0);
 
-        fragment = new FragmentChannelVideo();
+        fragment = new ChannelVideoFragment();
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
@@ -170,8 +170,8 @@ public final class HomeActivity extends AppCompatActivity implements YouTubePlay
     //создает фрагмент для отображения видео и передает ему id видео
     @Override
     public void onVideoSelected(String ID) {
-        FragmentVideo fragmentVideo =
-                (FragmentVideo) getFragmentManager().findFragmentById(R.id.video_fragment_container);
+        VideoFragment fragmentVideo =
+                (VideoFragment) getFragmentManager().findFragmentById(R.id.video_fragment_container);
         fragmentVideo.setVideoId(ID);
     }
     //метод для преобразования dp в px

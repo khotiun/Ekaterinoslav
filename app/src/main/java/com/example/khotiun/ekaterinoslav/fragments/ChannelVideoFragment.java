@@ -2,7 +2,6 @@ package com.example.khotiun.ekaterinoslav.fragments;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -41,9 +40,9 @@ import java.util.HashMap;
  * Created by hotun on 18.07.2017.
  */
 //будет отображать список выбранного канала или плейлиста
-public class FragmentChannelVideo extends Fragment implements View.OnClickListener {
+public class ChannelVideoFragment extends Fragment implements View.OnClickListener {
 
-    private static final String TAG = FragmentChannelVideo.class.getSimpleName();
+    private static final String TAG = ChannelVideoFragment.class.getSimpleName();
     private static final String TAGS = "URL";
 
     private TextView mLblNoResult;

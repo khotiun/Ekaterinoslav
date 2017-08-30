@@ -11,7 +11,7 @@ import com.google.android.youtube.player.YouTubePlayerFragment;
  * Created by hotun on 18.07.2017.
  */
 //класс нужен для отображения видео стандартно и в полноэкранном режиме
-public class FragmentVideo extends YouTubePlayerFragment implements YouTubePlayer.OnInitializedListener {
+public class VideoFragment extends YouTubePlayerFragment implements YouTubePlayer.OnInitializedListener {
 
    private YouTubePlayer mPlayer;//создание плеера
    private String mVideoId;//строковый параметр для видео id
