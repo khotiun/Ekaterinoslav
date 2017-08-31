@@ -49,6 +49,7 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();//инициализация обьекта
         //для того что бы слушать состояние пользователя
@@ -62,6 +63,7 @@ public class MapActivity extends AppCompatActivity {
                 }
             }
         };
+
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         FragmentManager fm = getSupportFragmentManager();
@@ -100,7 +102,8 @@ public class MapActivity extends AppCompatActivity {
                                 Intent intent = PlaceListActivity.newIntent(MapActivity.this);
                                 startActivity(intent);
                             } else if (position == 2) {
-
+                                Intent intent = ArchitectListActivity.newIntent(MapActivity.this);
+                                startActivity(intent);
                             } else if (position == 3) {
                                 Intent intent = HomeActivity.newIntent(MapActivity.this);
                                 startActivity(intent);
@@ -136,10 +139,11 @@ public class MapActivity extends AppCompatActivity {
         }
     }
 
-    private void addPlace1() {
-        List<Integer> architectPlaces = new ArrayList<>();
+    private void addPlace0() {
+        List <Integer> architectPlaces = new ArrayList<>();
         architectPlaces.add(1);
         Architect architect = new Architect(
+                0,
                 "Захаров Андриан Дмитриевич",
                 "Родился 8 августа 1761 года в семье мелкого служащего Адмиралтейств-коллегии. В раннем возрасте был отдан отцом в художественное училище при петербургской Академии Художеств, где проучился до 1782 года. Его учителями были А. Ф. Кокоринов, И. Е. Старов и Ю. М. Фельтен. В 1778 году Андреян Захаров получил серебряную медаль за проект загородного дома, в 1780 году — Большую серебряную медаль за «архитектурную композицию, представляющую дом принцев». При окончании училища получил большую золотую медаль и право на пенсионерскую поездку за границу для продолжения образования. Продолжал учиться в Париже с 1782 года по 1786 год у Ж. Ф. Шальгрена.\n" +
                         "\n" +
@@ -160,18 +164,18 @@ public class MapActivity extends AppCompatActivity {
 
         );
 
-        List<String> oldPhotos = new ArrayList<>();
+        List <String> oldPhotos = new ArrayList<>();
         oldPhotos.add("https://www.shukach.com/sites/default/files/imagecache/node-gallery-display-clean/post_images/3_3.jpg");
         oldPhotos.add("https://www.shukach.com/sites/default/files/imagecache/node-gallery-display-clean/post_images/sobor.jpg");
 
-        List<String> newPhotos = new ArrayList<>();
+        List <String> newPhotos = new ArrayList<>();
         newPhotos.add("https://oktv.ua/img/article/dnepr_preobrag1.jpg");
         newPhotos.add("http://lopata.in.ua/wp-content/uploads/2015/02/171.jpg");
         newPhotos.add("http://mistaua.com/filesup/dost_foto/853_1_2.jpg");
         newPhotos.add("http://eparhia.dp.ua/contents/images/1797752a0840d9a481.jpg");
 
         Place place = new Place(
-                1,
+                0,
                 "Спасо-Преображенский кафедральный собор",
                 "Наиболее замечательным сооружением Екатеринослава эпохи классицизма является Преображенский собор, увенчавший место закладки города.\n" +
                         "Проект собора, разработанный и утвержденный в 1786 г., не был осуществлен. Не исключено, что И. Старов, занимаясь строительством Потемкинского дворца и генеральным планом Екатеринослава, предполагал построить городской кафедральный собор по собственному проекту. Ведь в те времена близилось окончание строительства одного из наиболее выдающихся и престижных сооружений мастера — Троицкого собора Александро-Невской лавры в Петербурге и логично было продолжить подобную работу в Екатеринославе. На эту мысль наводит находка в архиве Научно-исследовательского института теории, истории и перспективных проблем советской архитектуры в г. Киеве неизвестного офорта 1790-х годов, изображающего (согласно позднейшей атрибутации) интерьер собора в Екатеринославе. На рисунке видим центральный неф грандиозного многокупольного сооружения с базиликальным раскрытием внутреннего пространства. От боковых нефов он отделен торжественным рядом спаренных колонн римско-коринфского ордера. На пилонах входной части храма расположены монументальные горельефы.\n" +
@@ -189,36 +193,42 @@ public class MapActivity extends AppCompatActivity {
                 "http://gorod.dp.ua/out/attractions/oneplace/?place_id=1199",
                 "площадь Соборная, 1"
         );
-        mDatabaseReference.child("Place").child(1 + "").setValue(place);
+        mDatabaseReference.child("Place").child(0 + "").setValue(place);
+        mDatabaseReference.child("Architect").child(0 + "").setValue(architect);
     }
 
 
-    private void addPlace0() {
-        List<Integer> architectPlaces = new ArrayList<>();
-        architectPlaces.add(0);
+
+
+
+
+    private void addPlace1() {
+        List <Integer> architectPlaces = new ArrayList<>();
+        architectPlaces.add(2);
         Architect architect = new Architect(
+                1,
                 "Миклашевский Александр Иванович",
                 "Список зданий, спроектированных архитектором Александром Миклашевским в Екатеринославе, сравнительно невелик. Однако несколько его работ вполне заслуженно считаются знаковыми для города. Сегодня сохранилось два объекта, к которым имел отношение зодчий, – городской почтамт и жилой комплекс «Первозвановский». Главное творение Миклашевского – Вознесенская, или Казанская церковь – безжалостно уничтожено в 30-е годы XX века." +
                         "Точные даты рождения и смерти зодчего неизвестны. В разных источниках его называют то Александром, то Алексеем. Вероятно, архитектор принадлежал к знаменитому роду, давшему Екатеринославу одного губернатора и нескольких предводителей дворянства. Гражданский инженер Александр (?) Иванович Миклашевский работал «младшим архитектором» в строительном отделе Екатеринославского губернского правления с конца 1890-х до середины 1910-х годов. Воспоминания о нем оставил архитектор А. Юхилевич: «А. И. Миклашевский по душевному складу тихий, вежливый, являл собой тип старого русского интеллигента, что дополнялось и его внешним видом: невысокий, чеховская бородка, пенсне на шнурке, чесучовый пиджак и соломенная шляпа. В таком, примерно, виде я однажды узрел его согбенную фигуру с кельмой (инструмент строителя) в руке возле входной двери в наш почтамт. Он чинил цементом что-то, начавшее деформироваться. Для меня это было неожиданно, но, зная его характер, я не удивился. В его большой квартире, в доме, построенном по его собственному проекту на пересечении улиц Комсомольской и Короленко, значительное место занимали «музейные» стеллажи с образчиками редких минералов. С большой увлеченностью он рассказывал мне о своей коллекции, собранной за многие годы. Это говорило о разносторонних интересах А. И. Миклашевского». («Днепр вечерний». – 1987. – 10 сент.). Несмотря на «тихий» характер, зодчему удалось найти свое место в насыщенной архитектурно-строительной жизни Екатеринослава начала XX века.",
-                null,
+                "Точная дата рождения не известна",
                 "http://www.tourdnepr.com/images/stories/Famous_People/Melnikov_Avraham_Abram_1.jpg",
                 architectPlaces,
                 "http://www.realnest.com.ua/information/newspaper/2010/08/2061"
 
         );
 
-        List<String> oldPhotos = new ArrayList<>();
+        List <String> oldPhotos = new ArrayList<>();
         oldPhotos.add("http://www.tourdnepr.com/images/stories/the_work_of_architects/Ekaterynoslavsky_Post_Of_1.jpg");
         oldPhotos.add("http://dnepr.info/wp-content/uploads/2017/04/1910.jpg");
 
-        List<String> newPhotos = new ArrayList<>();
+        List <String> newPhotos = new ArrayList<>();
         newPhotos.add("http://mistaua.com/filesup/dost_foto/802_1_2.jpg");
         newPhotos.add("http://visitdnipro.com/wp-content/uploads/2015/11/glavpochtamt.jpg");
         newPhotos.add("http://delmargroups.com/wp-content/themes/delmar/assets/img/recons/post-13.jpg");
         newPhotos.add("http://static.panoramio.com/photos/large/77338302.jpg");
 
         Place place = new Place(
-                0,
+                1,
                 "Спасо-Преображенский кафедральный собор",
                 "Одно из самых известных сохранившихся зданий Екатеринослава – городской почтамт (пр. Карла Маркса, 62). Новое здание «почтово-телеграфной конторы» было построено в 1904-1905 гг. возле старого здания середины XIX в. Здание почтамта выделялось импозантной архитектурой, а своим обликом напоминало здания Центральной Европы. Двухэтажный основной объем акцентирован сильно выступающей частью с островерхой башней. Проект выполнил петербургский архитектор В. Бочаров. Миклашевский осуществлял общий надзор за строительством, а также выполнил проект интерьера операционного зала. Огромный свод зала украшен сочным декором в стиле модерн, с растительными мотивами. Возможно, Миклашевский спроектировал и декор лестницы почтамта, выполненной в одном стиле с залом. Прекрасно сохранившийся интерьер почтамта – ценнейший памятник интерьеров екатеринославского модерна. Конкуренцию ему может составить только зал заседаний Городской Думы (ныне училище культуры, пр. К. Маркса, 49).",
                 new PlaceLocation(48.467789, 35.040961),
@@ -228,6 +238,7 @@ public class MapActivity extends AppCompatActivity {
                 "http://www.realnest.com.ua/information/newspaper/2010/08/2061",
                 "проспект Дмитра Яворницького 62 (пр. Карла Маркса)"
         );
-        mDatabaseReference.child("Place").child(0 + "").setValue(place);
+        mDatabaseReference.child("Place").child(1 + "").setValue(place);
+        mDatabaseReference.child("Architect").child(1 + "").setValue(architect);
     }
 }

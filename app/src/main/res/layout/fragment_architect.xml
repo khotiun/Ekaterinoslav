@@ -4,6 +4,69 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/architect_photo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"/>
 
+    <TextView
+        android:id="@+id/architect_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/architect_photo"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/architect_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/architect_date"
+        android:gravity="center"
+        tools:text="Иванов Иван Иванович"/>
+
+    <TextView
+        android:id="@+id/architect_biography_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/architect_date"
+        android:text="@string/biography"/>
+
+    <TextView
+        android:id="@+id/architect_biography"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/architect_biography_line"/>
+
+    <TextView
+        android:id="@+id/architect_project_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/architect_biography"
+        android:text="По его проекту был построен"/>
+
+    <TextView
+        android:id="@+id/architect_project"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/architect_project_line"/>
+
+    <TextView
+        android:id="@+id/architect_source_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/architect_biography"
+        android:text="@string/architect_source_line"/>
+
+    <TextView
+        android:id="@+id/architect_source"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/architect_project_line"/>
 
 </RelativeLayout>

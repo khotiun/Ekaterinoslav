@@ -74,6 +74,9 @@
     <string name="message">Вы можете скачать приложение "Ekaterinoslav" для Android в </string>
     <string name="architect_building">Архитектор здания</string>
     <string name="building_in_our_time">Здание в наше время</string>
+    <string name="biography">Биография</string>
+    <string name="architect_project_line">По его проекту был построен</string>
+    <string name="architect_source_line">Ссылка на источник</string>
 
 
 </resources>

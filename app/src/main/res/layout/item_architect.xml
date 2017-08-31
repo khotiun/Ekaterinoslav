@@ -18,7 +18,7 @@
         android:layout_marginLeft="@dimen/standard_margin">
 
         <ImageView
-            android:id="@+id/item_place_iv"
+            android:id="@+id/item_architect_iv"
             android:layout_width="120dp"
             android:layout_height="96dp"
             android:layout_alignParentLeft="true"
@@ -36,23 +36,23 @@
         android:paddingRight="@dimen/standard_margin">
 
         <TextView
-            android:id="@+id/item_place_place_title"
+            android:id="@+id/item_architect_architect_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/title"
-            tools:text="Мерефо-Херсонский железнодорожный мост"/>
+            tools:text="Иванов Иван Иванович"/>
 
         <TextView
-            android:id="@+id/item_place_place_address"
+            android:id="@+id/item_architect_architect_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:textColor="@color/secondary_text"
             android:textSize="@dimen/subhead"
-            tools:text="Кутузова 2/3"/>
+            tools:text="1 декабря 1798"/>
 
     </LinearLayout>
 

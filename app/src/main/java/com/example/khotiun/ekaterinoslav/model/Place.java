@@ -15,7 +15,7 @@ public class Place {
     private List<String> mOldPhotos;
     private List<String> mNewPhotos;
     private String mSource;
-    private String address;
+    private String mAddress;
 
     public Place() {
     }
@@ -29,7 +29,7 @@ public class Place {
         mOldPhotos = oldPhotos;
         mNewPhotos = newPhotos;
         mSource = source;
-        this.address = address;
+        mAddress = address;
     }
 
     public int getId() {
@@ -97,25 +97,10 @@ public class Place {
     }
 
     public String getAddress() {
-        return address;
+        return mAddress;
     }
 
     public void setAddress(String address) {
-        this.address = address;
-    }
-
-    @Override
-    public String toString() {
-        return "Place{" +
-                "mId=" + mId +
-                ", mTitle='" + mTitle + '\'' +
-                ", mDescription='" + mDescription + '\'' +
-                ", mLocation=" + mLocation +
-                ", mArchitect=" + mArchitect +
-                ", mOldPhotos=" + mOldPhotos +
-                ", mNewPhotos=" + mNewPhotos +
-                ", mSource='" + mSource + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+        mAddress = address;
     }
 }

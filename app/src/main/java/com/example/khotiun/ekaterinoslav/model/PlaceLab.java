@@ -9,7 +9,7 @@ import java.util.List;
 //класс на основе синглтона
 public class PlaceLab {
     private static PlaceLab sPlaceLab;
-    private List<Place> places;
+    private List<Place> mPlaces;
 
     public static PlaceLab getPlaceLab() {
         if (sPlaceLab == null) {
@@ -19,15 +19,15 @@ public class PlaceLab {
     }
 
     private PlaceLab() {
-        places = new ArrayList<>();
+        mPlaces = new ArrayList<>();
     }
 
     public List<Place> getPlaces() {
-        return places;
+        return mPlaces;
     }
 
     public Place getPlace(int placeId) {
-        for (Place place : places) {
+        for (Place place : mPlaces) {
             if (place.getId() == placeId) {
                 return place;
             }
@@ -36,6 +36,6 @@ public class PlaceLab {
     }
 
     public void addPlaceList(List<Place> places) {
-        this.places.addAll(places);
+        this.mPlaces.addAll(places);
     }
 }

@@ -64,9 +64,9 @@ public class PlaceListFragment extends Fragment {
         public PlaceHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            mPhotoImageView = (ImageView) itemView.findViewById(R.id.list_item_place_iv);
-            mTitleTextView = (TextView) itemView.findViewById(R.id.list_item_place_place_title);
-            mAddressTextView = (TextView) itemView.findViewById(R.id.list_item_place_place_address);
+            mPhotoImageView = (ImageView) itemView.findViewById(R.id.item_place_iv);
+            mTitleTextView = (TextView) itemView.findViewById(R.id.item_place_place_title);
+            mAddressTextView = (TextView) itemView.findViewById(R.id.item_place_place_address);
 
         }
 
