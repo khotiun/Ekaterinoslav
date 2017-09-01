@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/place_photo"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:scaleType="centerCrop"/>
 
         <TextView
@@ -24,31 +24,15 @@
             android:layout_below="@id/place_photo"
             android:textSize="@dimen/subhead"/>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/place_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/place_description"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/place_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:background="@color/title_color"
-                android:textSize="@dimen/title"
-                tools:text="Мерефо-Херсонский железнодорожный мост"/>
-
-            <TextView
-                android:id="@+id/place_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:background="@color/title_color"
-                android:textSize="@dimen/subhead"
-                tools:text="Кутузова 2/3"/>
-
-        </LinearLayout>
+            android:background="@color/title_color"
+            android:gravity="center"
+            android:textSize="@dimen/title"
+            tools:text="Мерефо-Херсонский железнодорожный мост"/>
 
         <LinearLayout
             android:id="@+id/linear_layout_architect"
@@ -134,6 +118,13 @@
                     android:scaleType="centerCrop"/>
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/place_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/subhead"
+                tools:text="Кутузова 2/3"/>
 
         </LinearLayout>
 

@@ -1,6 +1,7 @@
 package com.example.khotiun.ekaterinoslav.fragments;
 
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -10,6 +11,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.khotiun.ekaterinoslav.R;
+import com.example.khotiun.ekaterinoslav.model.Place;
+import com.example.khotiun.ekaterinoslav.model.PlaceLab;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
@@ -19,9 +22,12 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import static com.example.khotiun.ekaterinoslav.R.color.accent_color;
 
 /**
  * Created by hotun on 18.08.2017.
@@ -127,30 +133,36 @@ public class MapFragment extends SupportMapFragment {
         if (mMap == null || mCurrentLocation == null) {
             return;
         }
-
-//        LatLng itemPoint = new LatLng(mMapItem.getLat(), mMapItem.getLon());
-        LatLng myPoint = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
-
-//        BitmapDescriptor itemBitmap = BitmapDescriptorFactory.fromBitmap(mMapImage);
-//        MarkerOptions itemMarker = new MarkerOptions()
-//                .position(itemPoint)
-        MarkerOptions myMarker = new MarkerOptions()
-                .position(myPoint);
         mMap.clear();//очищение карты от маркеров
-        //При вызове addMarker(MarkerOptions) объект GoogleMap строит экземпляр Marker и добавляет его на карту
-//        mMap.addMarker(itemMarker);
-        mMap.addMarker(myMarker);
+        for (Place place : PlaceLab.getPlaceLab().getPlaces()) {
+            LatLng itemPoint = new LatLng(place.getLocation().getLongitude(), place.getLocation().getLatitude());
+            LatLng myPoint = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
 
-        //В данном случае мы создаем обновление, которое наводит камеру на конкретный объект LatLngBounds.
-        LatLngBounds bounds = new LatLngBounds.Builder()
-//                .include(itemPoint)
-                .include(myPoint)
-                .build();
+            MarkerOptions itemMarker = new MarkerOptions()
+                    .title(place.getTitle())
+                    .snippet(place.getAddress())
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                    .position(itemPoint);
 
-        int margin = getResources().getDimensionPixelSize(R.dimen.map_inset_margin);
-        //тобы перемещать GoogleMap по карте, мы строим объект CameraUpdate
-        CameraUpdate update = CameraUpdateFactory.newLatLngBounds(bounds, margin);
-        mMap.animateCamera(update);//бновление карты с помощью анимации
+            MarkerOptions myMarker = new MarkerOptions().position(myPoint);
+            myMarker.title("Вы здесь");
+
+            //При вызове addMarker(MarkerOptions) объект GoogleMap строит экземпляр Marker и добавляет его на карту
+            mMap.addMarker(itemMarker);
+            mMap.addMarker(myMarker);
+            //В данном случае мы создаем обновление, которое наводит камеру на конкретный объект LatLngBounds.
+            LatLngBounds bounds = new LatLngBounds.Builder()
+                    .include(itemPoint)
+                    .include(myPoint)
+                    .build();
+
+            int margin = getResources().getDimensionPixelSize(R.dimen.map_inset_margin);
+            //тобы перемещать GoogleMap по карте, мы строим объект CameraUpdate
+            CameraUpdate update = CameraUpdateFactory.newLatLngBounds(bounds, margin);
+            mMap.animateCamera(update);//бновление карты с помощью анимации
+        }
+
+
     }
 
 

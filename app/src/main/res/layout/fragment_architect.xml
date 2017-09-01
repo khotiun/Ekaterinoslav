@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/architect_photo"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
             android:scaleType="centerCrop"/>
 
         <TextView
@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@id/architect_date"
             android:gravity="center"
+            android:background="@color/title_color"
             android:textSize="@dimen/title"
             tools:text="Иванов Иван Иванович"/>
 
