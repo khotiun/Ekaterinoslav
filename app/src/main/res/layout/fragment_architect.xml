@@ -1,72 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/architect_photo"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"/>
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/standard_margin"
+        android:layout_marginRight="@dimen/standard_margin">
 
-    <TextView
-        android:id="@+id/architect_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/architect_photo"
-        android:gravity="center"/>
+        <ImageView
+            android:id="@+id/architect_photo"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"/>
 
-    <TextView
-        android:id="@+id/architect_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/architect_date"
-        android:gravity="center"
-        tools:text="Иванов Иван Иванович"/>
+        <TextView
+            android:id="@+id/architect_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/architect_photo"
+            android:gravity="center"
+            android:textSize="@dimen/subhead"/>
 
-    <TextView
-        android:id="@+id/architect_biography_line"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_below="@id/architect_date"
-        android:text="@string/biography"/>
+        <TextView
+            android:id="@+id/architect_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/architect_date"
+            android:gravity="center"
+            android:textSize="@dimen/title"
+            tools:text="Иванов Иван Иванович"/>
 
-    <TextView
-        android:id="@+id/architect_biography"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/architect_biography_line"/>
+        <TextView
+            android:id="@+id/architect_biography_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/architect_date"
+            android:gravity="center"
+            android:textSize="@dimen/title"
+            android:text="@string/biography"/>
 
-    <TextView
-        android:id="@+id/architect_project_line"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_below="@id/architect_biography"
-        android:text="По его проекту был построен"/>
+        <TextView
+            android:id="@+id/architect_biography"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/architect_biography_line"
+            android:textSize="@dimen/subhead"/>
 
-    <TextView
-        android:id="@+id/architect_project"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_below="@id/architect_project_line"/>
+        <TextView
+            android:id="@+id/architect_project_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/architect_biography"
+            android:gravity="center"
+            android:textSize="@dimen/title"
+            android:text="По его проекту был построен"/>
 
-    <TextView
-        android:id="@+id/architect_source_line"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_below="@id/architect_biography"
-        android:text="@string/architect_source_line"/>
+        <TextView
+            android:id="@+id/architect_project"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/architect_project_line"
+            android:gravity="center"
+            android:textSize="@dimen/subhead"/>
 
-    <TextView
-        android:id="@+id/architect_source"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_below="@id/architect_project_line"/>
+        <TextView
+            android:id="@+id/architect_source_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/architect_project"
+            android:gravity="center"
+            android:textSize="@dimen/title"
+            android:text="@string/architect_source_line"/>
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>

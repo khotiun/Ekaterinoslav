@@ -1,8 +1,10 @@
 package com.example.khotiun.ekaterinoslav.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.khotiun.ekaterinoslav.R;
+import com.example.khotiun.ekaterinoslav.activities.LinkPageActivity;
 import com.example.khotiun.ekaterinoslav.model.Architect;
 import com.example.khotiun.ekaterinoslav.model.ArchitectLab;
+import com.example.khotiun.ekaterinoslav.model.PlaceLab;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -19,6 +23,7 @@ import com.squareup.picasso.Picasso;
  */
 
 public class ArchitectFragment extends Fragment {
+    private static final String TAG = "ArchitectFragment";
     private static final String ARG_ARCHITECT_ID = "architect_id";
 
     private Architect mArchitect;
@@ -26,6 +31,7 @@ public class ArchitectFragment extends Fragment {
     private TextView mBiographyTextView;
     private TextView mDateTextView;
     private TextView mSourceTextView;
+    private TextView mProjectTextView;
     private ImageView mPhotoImageView;
 
     public static ArchitectFragment newInstance(int architectId) {
@@ -54,8 +60,16 @@ public class ArchitectFragment extends Fragment {
         mBiographyTextView.setText(mArchitect.getBiography());
         mDateTextView = (TextView) view.findViewById(R.id.architect_date);
         mDateTextView.setText(mArchitect.getDate());
-        mSourceTextView = (TextView) view.findViewById(R.id.architect_source);
-        mSourceTextView.setText(mArchitect.getSource());
+        mSourceTextView = (TextView) view.findViewById(R.id.architect_source_line);
+        mSourceTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = LinkPageActivity.newIntent(getActivity(), mArchitect.getSource());
+                startActivity(i);
+            }
+        });
+        mProjectTextView = (TextView) view.findViewById(R.id.architect_project);
+        mProjectTextView.setText(PlaceLab.getPlaceLab().getPlace(mArchitect.getPlaces().get(0)).getTitle());
         mPhotoImageView = (ImageView) view.findViewById(R.id.architect_photo);
         setImage(mArchitect.getPhotos(), mPhotoImageView);
         return view;

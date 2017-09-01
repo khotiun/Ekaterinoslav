@@ -141,7 +141,7 @@ public class MapActivity extends AppCompatActivity {
 
     private void addPlace0() {
         List <Integer> architectPlaces = new ArrayList<>();
-        architectPlaces.add(1);
+        architectPlaces.add(0);
         Architect architect = new Architect(
                 0,
                 "Захаров Андриан Дмитриевич",
@@ -204,7 +204,7 @@ public class MapActivity extends AppCompatActivity {
 
     private void addPlace1() {
         List <Integer> architectPlaces = new ArrayList<>();
-        architectPlaces.add(2);
+        architectPlaces.add(1);
         Architect architect = new Architect(
                 1,
                 "Миклашевский Александр Иванович",
