@@ -3,9 +3,13 @@ package com.example.khotiun.ekaterinoslav.app;
 import android.app.Application;
 import android.app.IntentService;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.example.khotiun.ekaterinoslav.R;
+import com.example.khotiun.ekaterinoslav.activities.MapActivity;
+import com.example.khotiun.ekaterinoslav.activities.SplashActivity;
 import com.example.khotiun.ekaterinoslav.model.Architect;
 import com.example.khotiun.ekaterinoslav.model.ArchitectLab;
 import com.example.khotiun.ekaterinoslav.model.Place;
@@ -33,9 +37,8 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        DatabaseReference mDatabaseReference = FirebaseDatabase.getInstance().getReference();//получаем экземляр FirebaseDatabase и из него ссылку на базу данных
-        setPlaceList(mDatabaseReference);
-        setArchitectList(mDatabaseReference);
+        new Loading().execute();
+
 
     }
 
@@ -79,5 +82,17 @@ public class MyApp extends Application {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+
+    public class Loading extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            DatabaseReference mDatabaseReference = FirebaseDatabase.getInstance().getReference();//получаем экземляр FirebaseDatabase и из него ссылку на базу данных
+            setPlaceList(mDatabaseReference);
+            setArchitectList(mDatabaseReference);
+            return null;
+        }
+
     }
 }
