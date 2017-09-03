@@ -34,7 +34,7 @@ import static com.example.khotiun.ekaterinoslav.R.color.accent_color;
  */
 
 public class MapFragment extends SupportMapFragment {
-    private static final String TAG = "MapFragment";
+    public static final String TAG = "MapFragment";
     private GoogleApiClient mClient;
     private GoogleMap mMap;
     private Location mCurrentLocation;

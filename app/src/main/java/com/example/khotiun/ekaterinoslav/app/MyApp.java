@@ -55,7 +55,6 @@ public class MyApp extends Application {
                     } else {
                         Log.d(TAG, place.getId() + "");
                     }
-
                 }
                 PlaceLab placeLab = PlaceLab.getPlaceLab();
                 placeLab.addPlaceList(places);

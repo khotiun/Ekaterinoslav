@@ -29,6 +29,7 @@ import static android.media.CamcorderProfile.get;
  */
 
 public class ArchitectListFragment extends Fragment {
+    public static String TAG = "ArchitectListFragment";
     private RecyclerView mArchitectRecyclerView;
     private ArchitectAdapter mAdapter;
 

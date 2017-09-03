@@ -15,5 +15,11 @@
         android:layout_below="@+id/toolbar">
     </FrameLayout>
 
+    <FrameLayout
+        android:id="@+id/activity_map_fragments_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+    </FrameLayout>
 
 </RelativeLayout>

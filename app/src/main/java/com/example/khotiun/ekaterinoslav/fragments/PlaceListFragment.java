@@ -25,6 +25,7 @@ import java.util.List;
  */
 
 public class PlaceListFragment extends Fragment {
+    public static String TAG = "PlaceListFragment";
 
     private RecyclerView mPlaceRecyclerView;
     private PlaceAdapter mAdapter;
@@ -72,6 +73,7 @@ public class PlaceListFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
+
             Intent intent = PlacePagerActivity.newIntent(getActivity(), mPlace.getId());
             startActivity(intent);
         }
