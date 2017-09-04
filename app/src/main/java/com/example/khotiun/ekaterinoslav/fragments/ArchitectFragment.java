@@ -78,7 +78,7 @@ public class ArchitectFragment extends Fragment {
 
     private void setImage(String mUrl, ImageView view) {
         Picasso.with(getContext()).load(mUrl)
-                .placeholder(R.mipmap.ic_launcher)
+                .placeholder(R.mipmap.empty_photo)
                 .into(view);
     }
 

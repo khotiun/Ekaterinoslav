@@ -37,6 +37,12 @@ public class ArchitectListFragment extends Fragment {
         return new ArchitectListFragment();
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);//удержание фрагмента
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,7 +64,7 @@ public class ArchitectListFragment extends Fragment {
         public void bindArchitect(Architect architect) {
             mArchitect = architect;
             Picasso.with(getActivity()).load(architect.getPhotos())
-                    .placeholder(R.mipmap.ic_launcher)
+                    .placeholder(R.mipmap.empty_photo)
                     .into(mPhotoImageView);
             mNameTextView.setText(architect.getName());
             mDateTextView.setText(architect.getDate());

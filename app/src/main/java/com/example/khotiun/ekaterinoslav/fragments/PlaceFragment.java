@@ -61,7 +61,7 @@ public class PlaceFragment extends Fragment {
         mArchitectNameTextView = (TextView) view.findViewById(R.id.place_architect_name);
         mArchitectNameTextView.setText(mPlace.getArchitect().getName());
         mOldPhotoImageView = (ImageView) view.findViewById(R.id.place_photo);
-        setImage(mPlace.getOldPhotos().get(0), mOldPhotoImageView);
+        setImage(mPlace.getOldPhotos(), mOldPhotoImageView);
         mNewPhotoOneImageView = (ImageView) view.findViewById(R.id.iv_detail_place_new_place_one);
         setImage(mPlace.getNewPhotos().get(0), mNewPhotoOneImageView);
         mNewPhotoTwoImageView = (ImageView) view.findViewById(R.id.iv_detail_place_new_place_two);
@@ -76,7 +76,7 @@ public class PlaceFragment extends Fragment {
 
     private void setImage(String mUrl, ImageView view) {
         Picasso.with(getContext()).load(mUrl)
-                .placeholder(R.mipmap.ic_launcher)
+                .placeholder(R.mipmap.empty_photo)
                 .into(view);
     }
 

@@ -34,6 +34,12 @@ public class PlaceListFragment extends Fragment {
         return new PlaceListFragment();
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);//удержание фрагмента
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,8 +60,8 @@ public class PlaceListFragment extends Fragment {
 
         public void bindPlace(Place place) {
             mPlace = place;
-            Picasso.with(getActivity()).load(place.getOldPhotos().get(0))
-                    .placeholder(R.mipmap.ic_launcher)
+            Picasso.with(getActivity()).load(place.getOldPhotos())
+                    .placeholder(R.mipmap.empty_photo)
                     .into(mPhotoImageView);
             mTitleTextView.setText(place.getTitle());
             mAddressTextView.setText(place.getAddress());

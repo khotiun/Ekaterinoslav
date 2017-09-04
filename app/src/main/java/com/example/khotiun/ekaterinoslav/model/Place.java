@@ -12,7 +12,7 @@ public class Place {
     private String mDescription;
     private PlaceLocation mLocation;
     private Architect mArchitect;
-    private List<String> mOldPhotos;
+    private String mOldPhotos;
     private List<String> mNewPhotos;
     private String mSource;
     private String mAddress;
@@ -20,7 +20,7 @@ public class Place {
     public Place() {
     }
 
-    public Place(int id, String title, String description, PlaceLocation location, Architect architect, List<String> oldPhotos, List<String> newPhotos, String source, String address) {
+    public Place(int id, String title, String description, PlaceLocation location, Architect architect, String oldPhotos, List<String> newPhotos, String source, String address) {
         mId = id;
         mTitle = title;
         mDescription = description;
@@ -72,11 +72,11 @@ public class Place {
         mArchitect = architect;
     }
 
-    public List<String> getOldPhotos() {
+    public String getOldPhotos() {
         return mOldPhotos;
     }
 
-    public void setOldPhotos(List<String> oldPhotos) {
+    public void setOldPhotos(String oldPhotos) {
         mOldPhotos = oldPhotos;
     }
 

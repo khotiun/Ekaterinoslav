@@ -77,6 +77,7 @@
     <string name="biography">Биография</string>
     <string name="architect_project_line">По его проекту был построен</string>
     <string name="architect_source_line">Ссылка на источник</string>
+    <string name="Map">Карта</string>
 
 
 </resources>

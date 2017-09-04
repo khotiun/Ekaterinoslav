@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -16,6 +15,9 @@ import com.example.khotiun.ekaterinoslav.R;
 import com.example.khotiun.ekaterinoslav.fragments.ArchitectListFragment;
 import com.example.khotiun.ekaterinoslav.fragments.MapFragment;
 import com.example.khotiun.ekaterinoslav.fragments.PlaceListFragment;
+import com.example.khotiun.ekaterinoslav.model.Architect;
+import com.example.khotiun.ekaterinoslav.model.Place;
+import com.example.khotiun.ekaterinoslav.model.PlaceLocation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -27,7 +29,13 @@ import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MapActivity extends AppCompatActivity {
+    private static final String TAG = "MapActivity";
+    private static final String MAPVISIBLE = "mapVisible";
+    private static final String MAPGONE = "mapGone";
     private Toolbar mToolbar;
     //отступ между списками в альбомной ориентации
     private Drawer mDrawer = null;
@@ -46,6 +54,7 @@ public class MapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();//инициализация обьекта
         //для того что бы слушать состояние пользователя
@@ -58,8 +67,9 @@ public class MapActivity extends AppCompatActivity {
                 }
             }
         };
+
         mFrameLayoutMap = (FrameLayout) findViewById(R.id.activity_map_container);
-        mFrameLayoutMap = (FrameLayout) findViewById(R.id.activity_map_fragments_container);
+        mFrameLayoutFragmets = (FrameLayout) findViewById(R.id.activity_map_fragments_container);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         FragmentManager fm = getSupportFragmentManager();
@@ -69,12 +79,12 @@ public class MapActivity extends AppCompatActivity {
             fragmentMap = MapFragment.newInstance();//создание фрагмента
             fm.beginTransaction().add(R.id.activity_map_container, fragmentMap, MapFragment.TAG).commit();//начало транзакции и добавление фрагмента в список FragmentManager
         }
-
-        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.list_place);
-        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.list_arhitect);
-        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.video_ekaterinoslav);
-        PrimaryDrawerItem item4 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.about);
-        PrimaryDrawerItem item5 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.exit);
+        final PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.Map);
+        final PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(2).withName(R.string.list_place);
+        final PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(3).withName(R.string.list_arhitect);
+        final PrimaryDrawerItem item4 = new PrimaryDrawerItem().withIdentifier(4).withName(R.string.video_ekaterinoslav);
+        final PrimaryDrawerItem item5 = new PrimaryDrawerItem().withIdentifier(5).withName(R.string.about);
+        final PrimaryDrawerItem item6 = new PrimaryDrawerItem().withIdentifier(6).withName(R.string.exit);
 
         AccountHeader accountHeader = new AccountHeaderBuilder()//шапка панели навигации
                 .withActivity(this)
@@ -88,28 +98,34 @@ public class MapActivity extends AppCompatActivity {
                 .withToolbar(mToolbar)
                 .withActionBarDrawerToggleAnimated(true)//анимация кнопки на тул баре
                 .withSavedInstance(savedInstanceState)//сохранение состояния
-                .addDrawerItems(item1, item2, item3, new DividerDrawerItem(), item4, item5)//пункты меню
+                .addDrawerItems(item1, item2, item3, item4, new DividerDrawerItem(), item5, item6)//пункты меню
                 //слушатель для нажатия пунктов списка
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         if (drawerItem != null) {
-                            if (position == 1) {
+                            if (position == item1.getIdentifier()) {
+                                if (mFrameLayoutMap.getVisibility() == View.GONE) {
+                                    updateUI(MAPVISIBLE);
+                                }
+                            } else if (position == item2.getIdentifier()) {
                                 FragmentManager fm = getSupportFragmentManager();
                                 Fragment fragment = PlaceListFragment.newInstance();
-                                fm.beginTransaction().replace(R.id.activity_map_container, fragment).commit();
-                            } else if (position == 2) {
+                                fm.beginTransaction().replace(R.id.activity_map_fragments_container, fragment).commit();
+                                updateUI(MAPGONE);
+                            } else if (position == item3.getIdentifier()) {
                                 FragmentManager fm = getSupportFragmentManager();
                                 Fragment fragment = ArchitectListFragment.newInstance();
-                                fm.beginTransaction().replace(R.id.activity_map_container, fragment).commit();
-                            } else if (position == 3) {
+                                fm.beginTransaction().replace(R.id.activity_map_fragments_container, fragment).commit();
+                                updateUI(MAPGONE);
+                            } else if (position == item4.getIdentifier()) {
                                 Intent intent = HomeActivity.newIntent(MapActivity.this);
                                 startActivity(intent);
-                            } else if (position == 5) {
+                            } else if (position == item5.getIdentifier()) {
                                 Intent aboutIntent = AboutActivity.newIntent(MapActivity.this);
                                 startActivity(aboutIntent);
                                 overridePendingTransition(R.anim.open_next, R.anim.close_main);
-                            } else if (position == 6) {
+                            } else if (position == item6.getIdentifier()) {
                                 mAuth.signOut();
                             }
                         }
@@ -137,20 +153,28 @@ public class MapActivity extends AppCompatActivity {
         }
     }
 
+    private void updateUI(String namePosition) {
+        if (namePosition.equals(MAPGONE)) {
+            mFrameLayoutFragmets.setVisibility(View.VISIBLE);
+            mFrameLayoutMap.setVisibility(View.GONE);
+        } else if (namePosition.equals(MAPVISIBLE)){
+            mFrameLayoutFragmets.setVisibility(View.GONE);
+            mFrameLayoutMap.setVisibility(View.VISIBLE);
+        }
+    }
+
     @Override
     public void onBackPressed() {
         if (mDrawer.isDrawerOpen()) {
             mDrawer.closeDrawer();
         } else {
-            Fragment hidenFrag = getSupportFragmentManager().findFragmentByTag(MapFragment.TAG);
-            if (hidenFrag == null) {
-                FragmentManager fm = getSupportFragmentManager();
-                Fragment fragmentMap = MapFragment.newInstance();//создание фрагмента
-                fm.beginTransaction().replace(R.id.activity_map_container, fragmentMap, MapFragment.TAG).commit();
+            if (mFrameLayoutMap.getVisibility() == View.GONE) {
+                updateUI(MAPVISIBLE);
             } else {
                 super.onBackPressed();
             }
         }
-
     }
+
+
 }
