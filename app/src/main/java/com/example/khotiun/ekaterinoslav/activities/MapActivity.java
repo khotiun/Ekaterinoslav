@@ -2,6 +2,8 @@ package com.example.khotiun.ekaterinoslav.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -10,15 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.example.khotiun.ekaterinoslav.R;
 import com.example.khotiun.ekaterinoslav.fragments.ArchitectListFragment;
 import com.example.khotiun.ekaterinoslav.fragments.MapFragment;
 import com.example.khotiun.ekaterinoslav.fragments.PlaceListFragment;
-import com.example.khotiun.ekaterinoslav.model.Architect;
-import com.example.khotiun.ekaterinoslav.model.Place;
-import com.example.khotiun.ekaterinoslav.model.PlaceLocation;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -27,10 +28,12 @@ import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.mikepenz.materialdrawer.model.interfaces.IProfile;
+import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
+import com.mikepenz.materialdrawer.util.DrawerImageLoader;
+import com.squareup.picasso.Picasso;
 
 public class MapActivity extends AppCompatActivity {
     private static final String TAG = "MapActivity";
@@ -44,6 +47,7 @@ public class MapActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseReference;
     private FrameLayout mFrameLayoutMap;
     private FrameLayout mFrameLayoutFragmets;
+    private int selectedDrawerItem = 0;//пункт меню по умолчанию
 
 
     public static Intent newIntent(Context context) {
@@ -67,7 +71,7 @@ public class MapActivity extends AppCompatActivity {
                 }
             }
         };
-
+        FirebaseUser user = mAuth.getCurrentUser();
         mFrameLayoutMap = (FrameLayout) findViewById(R.id.activity_map_container);
         mFrameLayoutFragmets = (FrameLayout) findViewById(R.id.activity_map_fragments_container);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -79,21 +83,42 @@ public class MapActivity extends AppCompatActivity {
             fragmentMap = MapFragment.newInstance();//создание фрагмента
             fm.beginTransaction().add(R.id.activity_map_container, fragmentMap, MapFragment.TAG).commit();//начало транзакции и добавление фрагмента в список FragmentManager
         }
-        final PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.Map);
+        final PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.Map);//свойство выделение при нажатии сбрасываем
         final PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(2).withName(R.string.list_place);
         final PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(3).withName(R.string.list_arhitect);
         final PrimaryDrawerItem item4 = new PrimaryDrawerItem().withIdentifier(4).withName(R.string.video_ekaterinoslav);
         final PrimaryDrawerItem item5 = new PrimaryDrawerItem().withIdentifier(5).withName(R.string.about);
         final PrimaryDrawerItem item6 = new PrimaryDrawerItem().withIdentifier(6).withName(R.string.exit);
 
-        AccountHeader accountHeader = new AccountHeaderBuilder()//шапка панели навигации
+        DrawerImageLoader.init(new  AbstractDrawerImageLoader () {
+            @Override
+            public  void  set (ImageView imageView , Uri uri , Drawable  placeholder ) {
+                Picasso.with(imageView . getContext ()).load (uri).placeholder (placeholder) .into(imageView);
+            }
+
+            @Override
+            public  void  cancel (ImageView  imageView ) {
+                Picasso.with(imageView.getContext()).cancelRequest(imageView);
+            }
+
+        });
+
+        AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
-//                .withHeaderBackground(R.drawable.header)
+                .addProfiles(
+                        new ProfileDrawerItem().withName(user.getDisplayName()).withEmail(user.getEmail()).withIcon(user.getPhotoUrl())
+                )
+                .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
+                    @Override
+                    public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
+                        return false;
+                    }
+                })
                 .build();
 
         mDrawer = new DrawerBuilder()
                 .withActivity(MapActivity.this)
-                .withAccountHeader(accountHeader)
+                .withAccountHeader(headerResult)
                 .withDisplayBelowStatusBar(true)//панель навигации под статус баром
                 .withToolbar(mToolbar)
                 .withActionBarDrawerToggleAnimated(true)//анимация кнопки на тул баре
