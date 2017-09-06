@@ -25,7 +25,7 @@ import java.util.List;
  */
 
 public class PlaceListFragment extends Fragment {
-    public static String TAG = "PlaceListFragment";
+    private static String TAG = "PlaceListFragment";
 
     private RecyclerView mPlaceRecyclerView;
     private PlaceAdapter mAdapter;

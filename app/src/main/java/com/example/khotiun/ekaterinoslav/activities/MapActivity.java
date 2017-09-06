@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -72,6 +74,7 @@ public class MapActivity extends AppCompatActivity {
             }
         };
         FirebaseUser user = mAuth.getCurrentUser();
+        Log.d(TAG, user.toString());
         mFrameLayoutMap = (FrameLayout) findViewById(R.id.activity_map_container);
         mFrameLayoutFragmets = (FrameLayout) findViewById(R.id.activity_map_fragments_container);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -87,8 +90,8 @@ public class MapActivity extends AppCompatActivity {
         final PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(2).withName(R.string.list_place);
         final PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(3).withName(R.string.list_arhitect);
         final PrimaryDrawerItem item4 = new PrimaryDrawerItem().withIdentifier(4).withName(R.string.video_ekaterinoslav);
-        final PrimaryDrawerItem item5 = new PrimaryDrawerItem().withIdentifier(5).withName(R.string.about);
-        final PrimaryDrawerItem item6 = new PrimaryDrawerItem().withIdentifier(6).withName(R.string.exit);
+        final PrimaryDrawerItem item5 = new PrimaryDrawerItem().withIdentifier(6).withName(R.string.about);
+        final PrimaryDrawerItem item6 = new PrimaryDrawerItem().withIdentifier(7).withName(R.string.exit);
 
         DrawerImageLoader.init(new  AbstractDrawerImageLoader () {
             @Override
