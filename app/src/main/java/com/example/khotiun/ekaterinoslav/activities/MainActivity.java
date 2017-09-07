@@ -48,7 +48,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
-    private static final int RC_SIGN_IN = 1;
+    private static final int RC_SIGN_IN = 12;
     private FirebaseAuth mAuth;// общий экземпляр FirebaseAuthобъекта
     private FirebaseAuth.AuthStateListener mAuthListener;
     private EditText etEmail, etPassword;
@@ -66,10 +66,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // initializing facebook SDK before setContentView - otherwise the app will crash
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_selection_sign_in);
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        Log.d(TAG, "111");
+        Log.d(TAG, "onCreate");
         //facebook
         mCallbackManager = CallbackManager.Factory.create();
 
@@ -90,13 +91,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         };
-
-        FirebaseUser user = mAuth.getCurrentUser();//получаем текущего пользователя
-        if (user != null) {
-            // User is signed in, пользователь вошел
-            Intent intent = MapActivity.newIntent(this);
-            startActivity(intent);
-        }
 
         etEmail = (EditText) findViewById(R.id.frafment_selection_sign_in_et_email);
         etPassword = (EditText) findViewById(R.id.frafment_selection_sign_in_et_password);
@@ -124,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
                     @Override
                     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+                        Log.d(TAG, "GoogleApiClient onConnectionFailed");
                         Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_LONG).show();
                     }
                 })
@@ -154,15 +149,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart");
         mAuth.addAuthStateListener(mAuthListener);
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        Log.d(TAG, "onStop");
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
     }
 
     @Override
@@ -198,6 +201,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             } else {
+                Log.d(TAG, "Google Sign In failed");
                 // Google Sign In failed, update UI appropriately
                 // ...
             }
@@ -209,6 +213,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //операция входа
     //Запуск намерения позволяет пользователю выбрать учетную запись Google для входа. Если вы запросили дополнительные возможности profile, emailи openid, пользователю также будет предложено предоставить доступ к запрошенным ресурсам
     private void signInGoogle() {
+        Log.d(TAG, "signInGoogle");
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -244,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //вход выполнин успешно
             @Override
             public void onSuccess(LoginResult loginResult) {
-                AccessToken accessToken = loginResult.getAccessToken();
+//                AccessToken accessToken = loginResult.getAccessToken();
                 Profile profile = Profile.getCurrentProfile();
                 Log.d(TAG, "facebook:onSuccess:" + loginResult + profile.getFirstName());
                 handleFacebookAccessToken(loginResult.getAccessToken());

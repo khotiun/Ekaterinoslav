@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "449873005143",
+    "firebase_url": "https://ekaterinoslav-f31fc.firebaseio.com",
+    "project_id": "ekaterinoslav-f31fc",
+    "storage_bucket": "ekaterinoslav-f31fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449873005143:android:5635188620146e1a",
+        "android_client_info": {
+          "package_name": "com.example.khotiun.ekaterinoslav"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449873005143-mudqqvph3a06h8ckruibdq5gs7l4nknb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.khotiun.ekaterinoslav",
+            "certificate_hash": "f3b6a91cec1864c3ff4c419dad2121c04b9edd1e"
+          }
+        },
+        {
+          "client_id": "449873005143-83g4acql2h4tfsjbg4nu5100jiqb1irj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCh5aijmeSGvEKJOLErcG0yw3rRdZVyDb4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449873005143-83g4acql2h4tfsjbg4nu5100jiqb1irj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

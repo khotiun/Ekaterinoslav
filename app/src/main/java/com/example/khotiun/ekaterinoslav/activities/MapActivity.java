@@ -49,7 +49,6 @@ public class MapActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseReference;
     private FrameLayout mFrameLayoutMap;
     private FrameLayout mFrameLayoutFragmets;
-    private int selectedDrawerItem = 0;//пункт меню по умолчанию
 
 
     public static Intent newIntent(Context context) {
@@ -60,6 +59,7 @@ public class MapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        Log.d(TAG, "onCreate");
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();//инициализация обьекта
@@ -84,7 +84,7 @@ public class MapActivity extends AppCompatActivity {
 
         if (fragmentMap == null) {//если фрагмент отсутствует
             fragmentMap = MapFragment.newInstance();//создание фрагмента
-            fm.beginTransaction().add(R.id.activity_map_container, fragmentMap, MapFragment.TAG).commit();//начало транзакции и добавление фрагмента в список FragmentManager
+            fm.beginTransaction().add(R.id.activity_map_container, fragmentMap).commit();//начало транзакции и добавление фрагмента в список FragmentManager
         }
         final PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.Map);//свойство выделение при нажатии сбрасываем
         final PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(2).withName(R.string.list_place);
@@ -93,17 +93,16 @@ public class MapActivity extends AppCompatActivity {
         final PrimaryDrawerItem item5 = new PrimaryDrawerItem().withIdentifier(6).withName(R.string.about);
         final PrimaryDrawerItem item6 = new PrimaryDrawerItem().withIdentifier(7).withName(R.string.exit);
 
-        DrawerImageLoader.init(new  AbstractDrawerImageLoader () {
+        DrawerImageLoader.init(new AbstractDrawerImageLoader() {
             @Override
-            public  void  set (ImageView imageView , Uri uri , Drawable  placeholder ) {
-                Picasso.with(imageView . getContext ()).load (uri).placeholder (placeholder) .into(imageView);
+            public void set(ImageView imageView, Uri uri, Drawable placeholder) {
+                Picasso.with(imageView.getContext()).load(uri).placeholder(placeholder).into(imageView);
             }
 
             @Override
-            public  void  cancel (ImageView  imageView ) {
+            public void cancel(ImageView imageView) {
                 Picasso.with(imageView.getContext()).cancelRequest(imageView);
             }
-
         });
 
         AccountHeader headerResult = new AccountHeaderBuilder()
@@ -170,12 +169,14 @@ public class MapActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart");
         mAuth.addAuthStateListener(mAuthListener);
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        Log.d(TAG, "onStop");
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
@@ -185,7 +186,8 @@ public class MapActivity extends AppCompatActivity {
         if (namePosition.equals(MAPGONE)) {
             mFrameLayoutFragmets.setVisibility(View.VISIBLE);
             mFrameLayoutMap.setVisibility(View.GONE);
-        } else if (namePosition.equals(MAPVISIBLE)){
+        } else if (namePosition.equals(MAPVISIBLE)) {
+            Log.d(TAG, "Map visible");
             mFrameLayoutFragmets.setVisibility(View.GONE);
             mFrameLayoutMap.setVisibility(View.VISIBLE);
         }
@@ -195,14 +197,12 @@ public class MapActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (mDrawer.isDrawerOpen()) {
             mDrawer.closeDrawer();
+        } else if (mFrameLayoutMap.getVisibility() == View.GONE) {
+            Log.d(TAG, "else if (mFrameLayoutMap.getVisibility() == View.GONE");
+            updateUI(MAPVISIBLE);
         } else {
-            if (mFrameLayoutMap.getVisibility() == View.GONE) {
-                updateUI(MAPVISIBLE);
-            } else {
-                super.onBackPressed();
-            }
+            Log.d(TAG, "onBackPressed");
+            super.onBackPressed();
         }
     }
-
-
 }
