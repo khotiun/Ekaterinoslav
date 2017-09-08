@@ -33,9 +33,8 @@ public class AboutActivity extends PreferenceActivity
         prefShareKey.setOnPreferenceClickListener(this);
         prefRateReviewKey.setOnPreferenceClickListener(this);
     }
+
     //соединяем преференс активити с преференс xml
-
-
     @Override
     protected int getPreferencesXmlId() {
         return R.xml.pref_about;

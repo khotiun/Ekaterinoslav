@@ -9,6 +9,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.khotiun.ekaterinoslav.R;
 import com.example.khotiun.ekaterinoslav.fragments.PlaceFragment;
@@ -37,7 +40,11 @@ public class PlacePagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_pager);
 
-        int placeId =  getIntent().getIntExtra(EXTRA_PLACE_ID, 0);
+        int placeId = getIntent().getIntExtra(EXTRA_PLACE_ID, 0);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//добавить кнопку назад
+        getSupportActionBar().setDisplayShowHomeEnabled(true);//сделать кнопку видимой
 
         mViewPager = (ViewPager) findViewById(R.id.activity_place_pager_view_pager);
         mPlaces = PlaceLab.getPlaceLab().getPlaces();
@@ -60,5 +67,20 @@ public class PlacePagerActivity extends AppCompatActivity {
                 break;
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.fragment_place, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home){
+          finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

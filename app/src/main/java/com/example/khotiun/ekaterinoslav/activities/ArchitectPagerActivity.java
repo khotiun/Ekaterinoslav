@@ -9,14 +9,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.khotiun.ekaterinoslav.R;
 import com.example.khotiun.ekaterinoslav.fragments.ArchitectFragment;
-import com.example.khotiun.ekaterinoslav.fragments.PlaceFragment;
 import com.example.khotiun.ekaterinoslav.model.Architect;
 import com.example.khotiun.ekaterinoslav.model.ArchitectLab;
-import com.example.khotiun.ekaterinoslav.model.Place;
-import com.example.khotiun.ekaterinoslav.model.PlaceLab;
 
 import java.util.List;
 
@@ -41,6 +41,10 @@ public class ArchitectPagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_architect_pager);
 
         int architectId =  getIntent().getIntExtra(EXTRA_ARCHITECT_ID, 0);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//добавить кнопку назад
+        getSupportActionBar().setDisplayShowHomeEnabled(true);//сделать кнопку видимо
 
         mViewPager = (ViewPager) findViewById(R.id.activity_architect_pager_view_pager);
         mArchitects = ArchitectLab.getArchitectLab().getArchitects();
@@ -63,5 +67,20 @@ public class ArchitectPagerActivity extends AppCompatActivity {
                 break;
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.fragment_place, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

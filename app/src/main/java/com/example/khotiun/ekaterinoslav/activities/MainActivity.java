@@ -17,13 +17,11 @@ import android.widget.Toast;
 import com.example.khotiun.ekaterinoslav.FirebaseAccount;
 import com.example.khotiun.ekaterinoslav.R;
 import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
-import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
@@ -48,7 +46,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
-    private static final int RC_SIGN_IN = 12;
+    private static final int RC_SIGN_IN = 1;
     private FirebaseAuth mAuth;// общий экземпляр FirebaseAuthобъекта
     private FirebaseAuth.AuthStateListener mAuthListener;
     private EditText etEmail, etPassword;
@@ -96,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         etPassword = (EditText) findViewById(R.id.frafment_selection_sign_in_et_password);
         btnSignIn = (Button) findViewById(R.id.frafment_selection_sign_in_btn_login);
         btnSignIn.setOnClickListener(this);
-        btnSignInGoogle = (SignInButton) findViewById(R.id.frafment_selection_sign_in_btn_sign_in_google);
+        btnSignInGoogle = (SignInButton) findViewById(R.id.btn_sign_in_google);
         btnSignInGoogle.setOnClickListener(this);
         btnSignInFacebook = (LoginButton) findViewById(R.id.frafment_selection_sign_in_btn_sign_in_facebook);
         btnSignInFacebook.setReadPermissions("email");
@@ -124,25 +122,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 })
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-
-
-        AccessTokenTracker tracker = new AccessTokenTracker() {
-            @Override
-            protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
-
-            }
-        };
-
-        ProfileTracker profileTracker = new ProfileTracker() {
-            @Override
-            protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
-
-            }
-        };
-
-        tracker.startTracking();
-        profileTracker.startTracking();
-
     }
 
     //добавление и удаление слушателя
@@ -173,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == R.id.frafment_selection_sign_in_btn_login) {
             FirebaseAccount.signInAccount(this, etEmail.getText().toString(), etPassword.getText().toString());
 
-        } else if (v.getId() == R.id.frafment_selection_sign_in_btn_sign_in_google) {
+        } else if (v.getId() == R.id.btn_sign_in_google) {
             signInGoogle();
 
         } else if (v.getId() == R.id.frafment_selection_sign_in_tv_regestration) {
@@ -213,7 +192,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //операция входа
     //Запуск намерения позволяет пользователю выбрать учетную запись Google для входа. Если вы запросили дополнительные возможности profile, emailи openid, пользователю также будет предложено предоставить доступ к запрошенным ресурсам
     private void signInGoogle() {
-        Log.d(TAG, "signInGoogle");
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }

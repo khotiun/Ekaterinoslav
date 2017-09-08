@@ -49,12 +49,7 @@
     </style>
 
     <style name="MyHintText" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textColor">@color/grey_50</item>
-    </style>
-
-    <style name="MyEditText" parent="Theme.AppCompat.Light">
-        <item name="colorControlNormal">@color/black_50</item>
-        <item name="colorControlActivated">@color/grey_50</item>
+        <item name="android:textColor">@color/accent_color</item>
     </style>
 
 </resources>
