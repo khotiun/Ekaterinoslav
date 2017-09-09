@@ -20,7 +20,6 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // initializing facebook SDK before setContentView - otherwise the app will crash
-        FacebookSdk.sdkInitialize(getApplicationContext());
+//        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_selection_sign_in);
 
         Log.d(TAG, "onCreate");
@@ -83,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     Intent intent = MapActivity.newIntent(MainActivity.this);
                     startActivity(intent);
+                    finish();
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .requestIdToken(getString(R.string.default_web_client_id))//передать свой клиентский идентификатор сервера к requestIdTokenметоду. Чтобы найти идентификатор клиента OAuth 2.0:
                 .requestEmail()
                 .build();
-        //google sign in
-        //методе активности входа в систему , создайте GoogleApiClientобъект с доступом к API входа в Google и указанными вами параметрами
+//        google sign in
+//        методе активности входа в систему , создайте GoogleApiClientобъект с доступом к API входа в Google и указанными вами параметрами
         mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext())
                 .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
                     @Override
@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             FirebaseAccount.signInAccount(this, etEmail.getText().toString(), etPassword.getText().toString());
 
         } else if (v.getId() == R.id.btn_sign_in_google) {
+            Log.d(TAG, "btn_sign_in_google_presed");
             signInGoogle();
 
         } else if (v.getId() == R.id.frafment_selection_sign_in_tv_regestration) {
@@ -164,11 +165,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "onActivityResult");
         if (resultCode != Activity.RESULT_OK) {
             Log.d(TAG, "resultCode != Activity.RESULT_OK");
             return;
         }
-        Log.d(TAG, "onActivityResult");
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
 
         //google sign in
@@ -188,10 +189,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Pass the activity result back to the Facebook SDK
     }
 
+    @Override
+    public void onBackPressed() {
+        Log.d(TAG, "onBackPressed");
+        super.onBackPressed();
+    }
+
     //google sign in
     //операция входа
     //Запуск намерения позволяет пользователю выбрать учетную запись Google для входа. Если вы запросили дополнительные возможности profile, emailи openid, пользователю также будет предложено предоставить доступ к запрошенным ресурсам
     private void signInGoogle() {
+        Log.d(TAG, "signInGoogle");
+        Log.d(TAG, mGoogleApiClient.toString());
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
