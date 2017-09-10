@@ -1,9 +1,7 @@
 package com.example.khotiun.ekaterinoslav.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -14,7 +12,6 @@ import android.view.MenuItem;
 
 import com.example.khotiun.ekaterinoslav.R;
 import com.example.khotiun.ekaterinoslav.activities.AboutActivity;
-import com.example.khotiun.ekaterinoslav.activities.MapActivity;
 import com.example.khotiun.ekaterinoslav.activities.SelectionSignInActivity;
 import com.example.khotiun.ekaterinoslav.model.Place;
 import com.example.khotiun.ekaterinoslav.model.PlaceLab;
@@ -32,8 +29,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
-
-import static com.example.khotiun.ekaterinoslav.R.color.accent_color;
 
 /**
  * Created by hotun on 18.08.2017.
@@ -113,11 +108,14 @@ public class MapFragment extends SupportMapFragment {
                 Intent aboutIntent = AboutActivity.newIntent(getActivity());
                 startActivity(aboutIntent);
                 return true;
-            case R.id.action_exit:
+            case R.id.action_exit_login_out:
                 FirebaseAuth.getInstance().signOut();//инициализация обьекта
                 Intent intent = SelectionSignInActivity.newIntent(getActivity());
                 startActivity(intent);
                 getActivity().finish();
+                return true;
+            case R.id.action_exit_app:
+                System.exit(0);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

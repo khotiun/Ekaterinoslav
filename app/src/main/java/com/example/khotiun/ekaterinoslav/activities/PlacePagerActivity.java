@@ -85,11 +85,14 @@ public class PlacePagerActivity extends AppCompatActivity {
                 Intent aboutIntent = AboutActivity.newIntent(this);
                 startActivity(aboutIntent);
                 return true;
-            case R.id.action_other_exit:
+            case R.id.action_other_exit_login_out:
                 FirebaseAuth.getInstance().signOut();//инициализация обьекта
                 Intent intent = SelectionSignInActivity.newIntent(this);
                 startActivity(intent);
                 finish();
+                return true;
+            case R.id.action_other_exit_app:
+                System.exit(0);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
