@@ -5,8 +5,14 @@
       tools:context=".activities.MapActivity">
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_other_about_app"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/about"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_other_exit"
+        android:orderInCategory="100"
+        android:title="@string/exit_login_out"
         app:showAsAction="never"/>
 </menu>

@@ -17,8 +17,11 @@ import com.example.khotiun.ekaterinoslav.R;
 import com.example.khotiun.ekaterinoslav.fragments.ArchitectFragment;
 import com.example.khotiun.ekaterinoslav.model.Architect;
 import com.example.khotiun.ekaterinoslav.model.ArchitectLab;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
+
+import static android.R.attr.id;
 
 /**
  * Created by hotun on 03.07.2017.
@@ -40,7 +43,7 @@ public class ArchitectPagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_architect_pager);
 
-        int architectId =  getIntent().getIntExtra(EXTRA_ARCHITECT_ID, 0);
+        int architectId = getIntent().getIntExtra(EXTRA_ARCHITECT_ID, 0);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//добавить кнопку назад
@@ -77,10 +80,21 @@ public class ArchitectPagerActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home){
-            finish();
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+            case R.id.action_other_about_app:
+                Intent aboutIntent = AboutActivity.newIntent(this);
+                startActivity(aboutIntent);
+                return true;
+            case R.id.action_other_exit:
+                FirebaseAuth.getInstance().signOut();//инициализация обьекта
+                Intent intent = SelectionSignInActivity.newIntent(this);
+                startActivity(intent);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 }

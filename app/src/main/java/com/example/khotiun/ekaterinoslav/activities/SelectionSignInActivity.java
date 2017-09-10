@@ -43,8 +43,8 @@ import com.google.firebase.auth.GoogleAuthProvider;
  * Created by hotun on 30.07.2017.
  */
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final String TAG = "MainActivity";
+public class SelectionSignInActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "SelectionSignInActivity";
     private static final int RC_SIGN_IN = 1;
     private FirebaseAuth mAuth;// общий экземпляр FirebaseAuthобъекта
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LoginButton btnSignInFacebook;
 
     public static Intent newIntent(Context context) {
-        return new Intent(context, MainActivity.class);
+        return new Intent(context, SelectionSignInActivity.class);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    Intent intent = MapActivity.newIntent(MainActivity.this);
+                    Intent intent = MapActivity.newIntent(SelectionSignInActivity.this);
                     startActivity(intent);
                     finish();
                 } else {
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
                         Log.d(TAG, "GoogleApiClient onConnectionFailed");
-                        Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SelectionSignInActivity.this, "Error", Toast.LENGTH_LONG).show();
                     }
                 })
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                            Toast.makeText(SelectionSignInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                            Toast.makeText(SelectionSignInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }

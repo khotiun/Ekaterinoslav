@@ -5,10 +5,17 @@
       tools:context=".activities.MapActivity">
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_about_app"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/about"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_exit"
+        android:orderInCategory="100"
+        android:title="@string/exit_login_out"
+        app:showAsAction="never"/>
+
     <item
         android:id="@+id/action_locate"
         android:enabled="false"

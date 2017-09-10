@@ -63,15 +63,15 @@ public class MapActivity extends AppCompatActivity {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();//инициализация обьекта
         //для того что бы слушать состояние пользователя
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {//срабатывает когда пользователь вошел или вышел
-                if (firebaseAuth.getCurrentUser() == null) {
-                    Intent intent = MainActivity.newIntent(MapActivity.this);
-                    startActivity(intent);
-                }
-            }
-        };
+//        mAuthListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {//срабатывает когда пользователь вошел или вышел
+//                if (firebaseAuth.getCurrentUser() == null) {
+//                    Intent intent = SelectionSignInActivity.newIntent(MapActivity.this);
+//                    startActivity(intent);
+//                }
+//            }
+//        };
         FirebaseUser user = mAuth.getCurrentUser();
         Log.d(TAG, user.toString());
         mFrameLayoutMap = (FrameLayout) findViewById(R.id.activity_map_container);
@@ -90,7 +90,7 @@ public class MapActivity extends AppCompatActivity {
         final PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(3).withName(R.string.list_arhitect);
         final PrimaryDrawerItem item4 = new PrimaryDrawerItem().withIdentifier(4).withName(R.string.video_ekaterinoslav);
         final PrimaryDrawerItem item5 = new PrimaryDrawerItem().withIdentifier(6).withName(R.string.about);
-        final PrimaryDrawerItem item6 = new PrimaryDrawerItem().withIdentifier(7).withName(R.string.exit);
+        final PrimaryDrawerItem item6 = new PrimaryDrawerItem().withIdentifier(7).withName(R.string.exit_login_out);
 
         DrawerImageLoader.init(new AbstractDrawerImageLoader() {
             @Override
@@ -153,6 +153,9 @@ public class MapActivity extends AppCompatActivity {
                                 overridePendingTransition(R.anim.open_next, R.anim.close_main);
                             } else if (position == item6.getIdentifier()) {
                                 mAuth.signOut();
+                                Intent intent = SelectionSignInActivity.newIntent(MapActivity.this);
+                                startActivity(intent);
+                                finish();
                             }
                         }
                         return false;
@@ -165,21 +168,21 @@ public class MapActivity extends AppCompatActivity {
     }
 
     //добавление и удаление слушателя
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart");
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop");
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        Log.d(TAG, "onStart");
+//        mAuth.addAuthStateListener(mAuthListener);
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        Log.d(TAG, "onStop");
+//        if (mAuthListener != null) {
+//            mAuth.removeAuthStateListener(mAuthListener);
+//        }
+//    }
 
     private void updateUI(String namePosition) {
         if (namePosition.equals(MAPGONE)) {

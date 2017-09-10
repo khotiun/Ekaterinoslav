@@ -17,6 +17,7 @@ import com.example.khotiun.ekaterinoslav.R;
 import com.example.khotiun.ekaterinoslav.fragments.PlaceFragment;
 import com.example.khotiun.ekaterinoslav.model.Place;
 import com.example.khotiun.ekaterinoslav.model.PlaceLab;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
@@ -77,10 +78,21 @@ public class PlacePagerActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home){
-          finish();
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+            case R.id.action_other_about_app:
+                Intent aboutIntent = AboutActivity.newIntent(this);
+                startActivity(aboutIntent);
+                return true;
+            case R.id.action_other_exit:
+                FirebaseAuth.getInstance().signOut();//инициализация обьекта
+                Intent intent = SelectionSignInActivity.newIntent(this);
+                startActivity(intent);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 }

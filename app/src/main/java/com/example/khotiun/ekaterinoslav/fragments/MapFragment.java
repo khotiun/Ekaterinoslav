@@ -1,5 +1,7 @@
 package com.example.khotiun.ekaterinoslav.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -11,6 +13,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.khotiun.ekaterinoslav.R;
+import com.example.khotiun.ekaterinoslav.activities.AboutActivity;
+import com.example.khotiun.ekaterinoslav.activities.MapActivity;
+import com.example.khotiun.ekaterinoslav.activities.SelectionSignInActivity;
 import com.example.khotiun.ekaterinoslav.model.Place;
 import com.example.khotiun.ekaterinoslav.model.PlaceLab;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -26,6 +31,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 
 import static com.example.khotiun.ekaterinoslav.R.color.accent_color;
 
@@ -46,8 +52,8 @@ public class MapFragment extends SupportMapFragment {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setHasOptionsMenu(true);
         setRetainInstance(true);//удержание фрагмента
+        setHasOptionsMenu(true);// должен получить вызов onCreateOptionsMenu(…).
         //Когда клиент будет создан, к нему необходимо подключиться. Google рекомендует всегда подключаться к клиенту в методе onStart()
         // и отключаться в onStop(). Вызов connect() для клиента также изменит возможности кнопки меню, поэтому мы вызовем invalidateOptionsMenu()
         // для обновления ее визуального состояния. (Позднее этот метод будет вызван еще один раз: после того, как мы получим информацию о создании подключения.)
@@ -102,6 +108,16 @@ public class MapFragment extends SupportMapFragment {
         switch (item.getItemId()) {
             case R.id.action_locate:
                 findMe();
+                return true;
+            case R.id.action_about_app:
+                Intent aboutIntent = AboutActivity.newIntent(getActivity());
+                startActivity(aboutIntent);
+                return true;
+            case R.id.action_exit:
+                FirebaseAuth.getInstance().signOut();//инициализация обьекта
+                Intent intent = SelectionSignInActivity.newIntent(getActivity());
+                startActivity(intent);
+                getActivity().finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

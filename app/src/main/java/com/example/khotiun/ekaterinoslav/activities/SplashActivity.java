@@ -42,7 +42,7 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Intent intent = MainActivity.newIntent(SplashActivity.this);
+            Intent intent = SelectionSignInActivity.newIntent(SplashActivity.this);
             startActivity(intent);
             overridePendingTransition(R.anim.open_next, R.anim.close_main);
             finish();
