@@ -151,7 +151,6 @@ public class MapActivity extends AppCompatActivity {
                             } else if (position == item6.getIdentifier()) {
                                 Intent aboutIntent = AboutActivity.newIntent(MapActivity.this);
                                 startActivity(aboutIntent);
-                                overridePendingTransition(R.anim.open_next, R.anim.close_main);
                             } else if (position == item7.getIdentifier()) {
                                 mAuth.signOut();
                                 LoginManager.getInstance().logOut();//выход с учетной записи фейсбук

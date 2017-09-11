@@ -65,7 +65,5 @@ public class AboutActivity extends PreferenceActivity
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //анимация смены активити
-        overridePendingTransition(R.anim.open_main, R.anim.close_next);
     }
 }

@@ -6,10 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".activities.SplashActivity">
 
-    <ImageView
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/gerb"/>
+    <RelativeLayout
+        android:id="@+id/activity_splash_containerOld"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/activity_splash_iv_gerb_old"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:src="@drawable/gerb_old"/>
+
+        <TextView
+            android:id="@+id/activity_splash_tv_old"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activity_splash_iv_gerb_old"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textSize="38sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/activity_splash_containerNew"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/activity_splash_iv_gerb_new"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:src="@drawable/gerb_new"/>
+
+        <TextView
+            android:id="@+id/activity_splash_tv_new"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activity_splash_iv_gerb_new"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="@string/Dnipro"
+            android:textSize="38sp"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>
