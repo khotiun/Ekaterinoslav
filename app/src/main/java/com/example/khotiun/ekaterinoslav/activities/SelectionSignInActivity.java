@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.khotiun.ekaterinoslav.FirebaseAccount;
 import com.example.khotiun.ekaterinoslav.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -150,7 +149,7 @@ public class SelectionSignInActivity extends AppCompatActivity implements View.O
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.frafment_selection_sign_in_btn_login) {
-            FirebaseAccount.signInAccount(this, etEmail.getText().toString(), etPassword.getText().toString());
+            signInAccount(etEmail.getText().toString(), etPassword.getText().toString());
 
         } else if (v.getId() == R.id.btn_sign_in_google) {
             Log.d(TAG, "btn_sign_in_google_presed");
@@ -231,7 +230,6 @@ public class SelectionSignInActivity extends AppCompatActivity implements View.O
     }
 
     private void signInFacebook() {
-
         btnSignInFacebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             //вход выполнин успешно
             @Override
@@ -277,5 +275,25 @@ public class SelectionSignInActivity extends AppCompatActivity implements View.O
                         }
                     }
                 });
+    }
+
+    //метод авторизации
+    public void signInAccount( String email, String password) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        //addOnCompleteListener - слушатель авторизации пользователя
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {//слушатель выполненого входа
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {//отрабатывает при попытке авторизации
+                //успешная авторизация
+                if (task.isSuccessful()) {
+                    Toast.makeText(SelectionSignInActivity.this, R.string.authorization_successful, Toast.LENGTH_SHORT).show();
+                    Intent intent = MapActivity.newIntent(SelectionSignInActivity.this);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(SelectionSignInActivity.this, R.string.authorization_failed, Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
     }
 }

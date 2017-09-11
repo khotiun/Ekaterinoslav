@@ -18,6 +18,7 @@ import com.example.khotiun.ekaterinoslav.R;
 import com.example.khotiun.ekaterinoslav.fragments.ArchitectListFragment;
 import com.example.khotiun.ekaterinoslav.fragments.MapFragment;
 import com.example.khotiun.ekaterinoslav.fragments.PlaceListFragment;
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -153,6 +154,7 @@ public class MapActivity extends AppCompatActivity {
                                 overridePendingTransition(R.anim.open_next, R.anim.close_main);
                             } else if (position == item7.getIdentifier()) {
                                 mAuth.signOut();
+                                LoginManager.getInstance().logOut();//выход с учетной записи фейсбук
                                 Intent intent = SelectionSignInActivity.newIntent(MapActivity.this);
                                 startActivity(intent);
                                 finish();

@@ -17,6 +17,7 @@ import com.example.khotiun.ekaterinoslav.R;
 import com.example.khotiun.ekaterinoslav.fragments.ArchitectFragment;
 import com.example.khotiun.ekaterinoslav.model.Architect;
 import com.example.khotiun.ekaterinoslav.model.ArchitectLab;
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
@@ -87,6 +88,7 @@ public class ArchitectPagerActivity extends AppCompatActivity {
                 return true;
             case R.id.action_other_exit_login_out:
                 FirebaseAuth.getInstance().signOut();//инициализация обьекта
+                LoginManager.getInstance().logOut();//выход с учетной записи фейсбук
                 Intent intent = SelectionSignInActivity.newIntent(this);
                 startActivity(intent);
                 finish();

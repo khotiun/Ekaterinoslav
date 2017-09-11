@@ -21,6 +21,7 @@
         <item name="material_drawer_selected">@color/drawer_item_selected_color</item>
         <item name="material_drawer_selected_text">@color/accent_color</item>
         <item name="material_drawer_header_selection_text">@color/text_and_icon_color</item>
+        <item name="android:itemBackground">@color/drawer_background_color</item>
 
         <item name="android:buttonStyle">@style/RaisedButtonStyle</item>
     </style>

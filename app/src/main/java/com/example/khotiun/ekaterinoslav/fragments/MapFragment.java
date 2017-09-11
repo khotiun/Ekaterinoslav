@@ -15,6 +15,7 @@ import com.example.khotiun.ekaterinoslav.activities.AboutActivity;
 import com.example.khotiun.ekaterinoslav.activities.SelectionSignInActivity;
 import com.example.khotiun.ekaterinoslav.model.Place;
 import com.example.khotiun.ekaterinoslav.model.PlaceLab;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
@@ -110,6 +111,7 @@ public class MapFragment extends SupportMapFragment {
                 return true;
             case R.id.action_exit_login_out:
                 FirebaseAuth.getInstance().signOut();//инициализация обьекта
+                LoginManager.getInstance().logOut();//выход с учетной записи фейсбук
                 Intent intent = SelectionSignInActivity.newIntent(getActivity());
                 startActivity(intent);
                 getActivity().finish();
@@ -175,9 +177,5 @@ public class MapFragment extends SupportMapFragment {
             CameraUpdate update = CameraUpdateFactory.newLatLngBounds(bounds, margin);
             mMap.animateCamera(update);//бновление карты с помощью анимации
         }
-
-
     }
-
-
 }
