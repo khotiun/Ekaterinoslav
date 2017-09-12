@@ -27,7 +27,6 @@ public class SplashActivity extends AppCompatActivity {
     public final static String ASYNCTASKFINISHED = "AsyncTaskFinished";
     public final static String NOT_RESULT = "NotResult";
     private ViewGroup vgOld, vgNew;
-    private int brNumber = 0;
     private String result;
     BroadcastReceiver br;
 
@@ -52,8 +51,8 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                if(result.equals(NOT_RESULT)){
-                   result = BROADCAST_GOT_RESULT;
                    Log.d(TAG, "onReceive "  + result);
+                   result = BROADCAST_GOT_RESULT;
                } else if(result.equals(ASYNCTASKFINISHED)){
                    Log.d(TAG, "onReceive "  + result);
                    Intent i = SelectionSignInActivity.newIntent(SplashActivity.this);

@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="@string/email"
-            android:textColorHint="@color/grey_50"
+            android:textColorHint="@color/secondary_text"
             android:textSize="20dp"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="@string/password"
-            android:textColorHint="@color/grey_50"
+            android:textColorHint="@color/secondary_text"
             android:textSize="20dp"/>
     </android.support.design.widget.TextInputLayout>
 
