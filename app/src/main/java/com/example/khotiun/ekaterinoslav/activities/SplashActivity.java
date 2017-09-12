@@ -1,10 +1,14 @@
 package com.example.khotiun.ekaterinoslav.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -17,7 +21,15 @@ import android.widget.TextView;
 import com.example.khotiun.ekaterinoslav.R;
 
 public class SplashActivity extends AppCompatActivity {
+    private final static String TAG = "SplashActivity";
+    public final static String BROADCAST_ACTION = "com.example.khotiun.ekaterinoslav.broadcast";
+    public final static String BROADCAST_GOT_RESULT = "BroadcatGotResult";
+    public final static String ASYNCTASKFINISHED = "AsyncTaskFinished";
+    public final static String NOT_RESULT = "NotResult";
     private ViewGroup vgOld, vgNew;
+    private int brNumber = 0;
+    private String result;
+    BroadcastReceiver br;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +38,7 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        result = NOT_RESULT;
         vgOld = (ViewGroup) findViewById(R.id.activity_splash_containerOld);
         vgNew = (ViewGroup) findViewById(R.id.activity_splash_containerNew);
         Animation animOld = AnimationUtils.loadAnimation(this, R.anim.alpha_ekaterinoslav);
@@ -34,6 +47,32 @@ public class SplashActivity extends AppCompatActivity {
         vgOld.startAnimation(animOld);
         vgNew.startAnimation(animNew);
         new Loading().execute();
+
+        br = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+               if(result.equals(NOT_RESULT)){
+                   result = BROADCAST_GOT_RESULT;
+                   Log.d(TAG, "onReceive "  + result);
+               } else if(result.equals(ASYNCTASKFINISHED)){
+                   Log.d(TAG, "onReceive "  + result);
+                   Intent i = SelectionSignInActivity.newIntent(SplashActivity.this);
+                   startActivity(i);
+                   finish();
+               }
+            }
+        };
+        // создаем фильтр для BroadcastReceiver
+        IntentFilter intFilt = new IntentFilter(BROADCAST_ACTION);
+        // регистрируем (включаем) BroadcastReceiver
+        registerReceiver(br, intFilt);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // дерегистрируем (выключаем) BroadcastReceiver
+        unregisterReceiver(br);
     }
 
     Animation.AnimationListener animationOldListener = new Animation.AnimationListener() {
@@ -70,9 +109,16 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Intent intent = SelectionSignInActivity.newIntent(SplashActivity.this);
-            startActivity(intent);
-            finish();
+            if (result.equals(BROADCAST_GOT_RESULT)){
+                Log.d(TAG, "onPostExecute "  + result);
+                Intent intent = SelectionSignInActivity.newIntent(SplashActivity.this);
+                startActivity(intent);
+                finish();
+            }
+            else if(result.equals(NOT_RESULT)){
+                Log.d(TAG, "onPostExecute "  + result);
+                result = ASYNCTASKFINISHED;
+            }
         }
     }
 

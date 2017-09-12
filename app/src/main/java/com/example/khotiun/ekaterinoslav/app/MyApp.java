@@ -1,9 +1,12 @@
 package com.example.khotiun.ekaterinoslav.app;
 
 import android.app.Application;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.ResultReceiver;
 import android.util.Log;
 
+import com.example.khotiun.ekaterinoslav.activities.SplashActivity;
 import com.example.khotiun.ekaterinoslav.model.Architect;
 import com.example.khotiun.ekaterinoslav.model.ArchitectLab;
 import com.example.khotiun.ekaterinoslav.model.Place;
@@ -25,7 +28,6 @@ import java.util.List;
 public class MyApp extends Application {
     private static final String TAG = "MyApp";
     DatabaseReference mDatabaseReference;//получаем экземляр FirebaseDatabase и из него ссылку на базу данных
-
 
     @Override
     public void onCreate() {
@@ -52,6 +54,7 @@ public class MyApp extends Application {
                 }
                 PlaceLab placeLab = PlaceLab.getPlaceLab();
                 placeLab.addPlaceList(places);
+
             }
 
             @Override
@@ -84,6 +87,14 @@ public class MyApp extends Application {
             setPlaceList(mDatabaseReference);
             setArchitectList(mDatabaseReference);
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Intent intent = new Intent(SplashActivity.BROADCAST_ACTION);
+            sendBroadcast(intent);
+
         }
     }
 }
