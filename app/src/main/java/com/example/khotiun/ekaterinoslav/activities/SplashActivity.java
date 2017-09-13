@@ -50,15 +50,15 @@ public class SplashActivity extends AppCompatActivity {
         br = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-               if(result.equals(NOT_RESULT)){
-                   Log.d(TAG, "onReceive "  + result);
-                   result = BROADCAST_GOT_RESULT;
-               } else if(result.equals(ASYNCTASKFINISHED)){
-                   Log.d(TAG, "onReceive "  + result);
-                   Intent i = SelectionSignInActivity.newIntent(SplashActivity.this);
-                   startActivity(i);
-                   finish();
-               }
+                if(result.equals(NOT_RESULT)){
+                    Log.d(TAG, "onReceive "  + result);
+                    result = BROADCAST_GOT_RESULT;
+                } else if(result.equals(ASYNCTASKFINISHED)){
+                    Log.d(TAG, "onReceive "  + result);
+                    Intent i = SelectionSignInActivity.newIntent(SplashActivity.this);
+                    startActivity(i);
+                    finish();
+                }
             }
         };
         // создаем фильтр для BroadcastReceiver
